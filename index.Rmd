@@ -19,6 +19,9 @@ Mi idea inicial, es mezclar contenidos teóricos con aplicaciones en R. Es muy p
 
 En fin, no pretendo salvar al mundo ni ser el faro de ningún posible estadístico(a).
 
+### Nota aparte {-}
+
+
 This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.
 
 The **bookdown** package can be installed from CRAN or Github:

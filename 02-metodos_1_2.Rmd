@@ -22,8 +22,19 @@ Por lo anterior, es muy importante definir $H_0$ y $H_1$ en el orden correcto, s
 
 ### Tipos de error {#terror-2}
 
-Esto de seguro ha sido visto mil y una veces, pero no está demás mostrarlo
+Esto de seguro ha sido visto mil y una veces, pero no está demás mostrarlo. En la tabla \@ref(tab:tipos-error)
 
+```{r tipos-error, echo = FALSE, message = FALSE, warning=FALSE}
+# , fig.cap = 'A figure caption.'
+library(kableExtra)
+mdt <- matrix(c("Realidad", "Realidad", "$H_0$ cierto", "$H_1$ cierto", "-", "Error tipo II", "Error tipo I", "-"), 
+              nrow=2, dimnames=list(c("", ""), c("", "", "No rechazo", "Rechazo")))
+knitr::kable(mdt, 'html', caption = 'Tipos de error y sus características.', booktabs = TRUE, align = "c") %>%
+  collapse_rows(columns = 1:2) %>%
+  add_header_above(c(" " = 1, "Decisión" = 4))
+```
+
+Un detalle importante. Hay que notar que no dice *"acepto"*, o alguna de sus acepciones, en ninguna parte. Una sutileza muy importante.
 
 ### El valor Z
 
