@@ -1,0 +1,29 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Introducción {#intro-1}
+
+La estadística está basada en las matemáticas (como la gran mayoría de las ciencas), y las matemáticas a su vez, son un constructo del ser humano. Es lo mejor que tenemos para representar la realidad, es lo que nos ha llevado a tener las grandes invenciones y avances de nuestra era. A veces esta simplificación funciona tan bien como la realidad misma, a veces no tanto, mas no es relevante para el objetivo del problema y a veces nos hace chocar de bruces contra un muro. Cosas de la vida.
+
+Por todo lo anterior y otras cosas más, la estadística tiene aspectos subjetivos bastante relevantes. Lo absoluto, lo cierto, lo concreto, pueden ir variando dependiendo de como afrontemos el problema, de los supuestos que se asumen y de la perspectiva del observador. Mucha variabilidad, sí, pero vamos que todos quienes hayan estudiado esto han pasado por eso... nadie se salva.
+
+Elegir entre un tipo de modelo versus otro para resolver un problema, es una problemática frecuente. Diferentes aproximaciones pueden ser igual de válidas, siempre y cuando entendámos lo que estamos haciendo.
+
+Y por eso en parte, es la razón por la que me animé a hacer esto. Porque quiero entender lo que estoy haciendo. Quiero entenderlo y manipularlo. Y quién sabe, quizás después, crear algo.
+
+
+
+## Concetos básicos {#cbasicos-1}
+
+Antes de comenzar, es bueno definir algunos conceptos básicos para que hablemos el mismo *idioma*. Comprendo que si lees esto hablas español, pero me refiero a aunar criterios y *"hablar de lo mismo"* cuando estemos defininiendo o haciendo algunos análisis. Que en el fondo es decir que una docena son 12 unidades de algo y no 11 ni 10.
+
+- Población: todos los sujetos o entidades de interés, que poseen una o varias características que nos gustaría estudiar. En la gran mayoría de los casos acceder a la población es imposible y por tanto, sus características reales son desconocidas.
+- Muestra: es un subconjunto de la población. La muestra no puede ser *"representativa"*. Dicho concepto está mal utilizado en la mayoría de los casos (ver \@ref(cimportantes-3))
+- Parámetro: característica númerica resumen de la población.
+- Estadístico: característica númerica resumen de la muestra.
+- Estimador: es el estadístico usado para aproximar el valor de una parámetro.
+- Estimación: resultado de aplicar el estimador a una muestra.
+
+

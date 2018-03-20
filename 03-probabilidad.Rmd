@@ -1,0 +1,22 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Probabilidad {#prob-3}
+
+Intuitivas en parte, no tanto en varias. Todo es posible, pero a la vez imposible. Sí, de eso se tratan las probabilidades
+
+
+## Conceptos importantes {#cimportantes-3}
+
+
+### Muestras significativas {#msignificativas-3}
+
+Tal y como nos referimos en \@ref(cbasicos-1), una muestra no puede ser calificada de *"significativa"*. Como la mayoría de las veces desconocemos las características que nos interesan de la población, es imposible saber si dicha muestra es o no es significativa. Por lo tanto el concepto es absurdo. Lo que sí es necesario de una muestra, es que su origen debe ser probabilístico, lo que se traduce en que debe ser posible asignarle una probabilidad de ser seleccionada (probabilidad de obtener dicha muestra).
+
+¿De qué tamaño debe ser la muestra? Depende de la variabilidad de la población. Pero diantres, si la población es desconocida, ¿cómo sabemos todas esas cosas? Bueno, bienvenido a los supuestos y simplificaciones, que de esos tendremos por montón. Lo bueno, es que seremos capaces de cuantificarlos.
+
+### Sesgo
+
+La cualidad de sesgado o insesgado es relativa al estimador, no a la muestra.
