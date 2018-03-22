@@ -25,5 +25,6 @@ Antes de comenzar, es bueno definir algunos conceptos básicos para que hablemos
 - Estadístico: característica númerica resumen de la muestra.
 - Estimador: es el estadístico usado para aproximar el valor de una parámetro.
 - Estimación: resultado de aplicar el estimador a una muestra.
+- Significancia: (ver \@ref(thipotesis-2))
 
 
