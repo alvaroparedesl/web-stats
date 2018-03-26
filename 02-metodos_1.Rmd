@@ -67,13 +67,19 @@ El valor $k$ determina las probabilidades $P$ de error. Si se fija:
 
 \begin{equation}
 k = \alpha = P(\text{rechazar } H_0 \text{ cuando } H_1 \text{ es correcto}) \\
-= P_{\mu = \mu_0} (|\bar{X} - \mu_0| \geq k) \\
-= 1 - P_{\mu = \mu_0} (\mu_0 - k < \bar{X} < \mu_0 + k)   \\
-= 1 - P_{\mu = \mu_0} \left (\frac{-k}{\sigma/\sqrt{n}} < \frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}} < \frac{k}{\sigma/\sqrt{n}} \right )
-(\#eq:test-hipotesis-p)
+= P_{\mu = \mu_0} (|\bar{X} - \mu_0| \geq k) = \alpha\\
+= 1 - P_{\mu = \mu_0} (\mu_0 - k < \bar{X} < \mu_0 + k) = \alpha  \\
+= 1 - P_{\mu = \mu_0} \left (\frac{-k}{\sigma/\sqrt{n}} < \frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}} < \frac{k}{\sigma/\sqrt{n}} \right ) = \alpha
+(\#eq:test-hipotesis-una-cola)
 \end{equation}
 
-Obviamente, este caso se da cuando se cumplen los supuestos de:
+Sabemos que si la media de $\mu_0 => \bar{X}~NORMAL(\mu_0, \sigma^2/n)$ entonces:
+
+\begin{equation}
+$\left (\frac{-k}{\sigma/\sqrt{n}} < \frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}} $
+\end{equation}
+
+Obviamente, este caso se da, cuando se cumplen los supuestos de:
 1. La población distribuye normal.
 2. Varianza ($\sigma$) de la población conocida.
 
@@ -88,8 +94,10 @@ El pero, está en que nuestro $n$ debe ser grande para poder aplicar el análisi
 
 ### El valor Z
 
-
-
+```{r histo-1, tidy=FALSE}
+hist(unlist(lapply(1:1000, FUN = function(x) mean(runif(2)))), 10,
+     main="", xlab="Mean")
+```
 
 You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(methods). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(methods).
 
