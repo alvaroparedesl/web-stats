@@ -19,6 +19,8 @@ Mi idea inicial, es mezclar contenidos teóricos con aplicaciones en R. Es muy p
 
 En fin, no pretendo salvar al mundo ni ser el faro de ningún posible estadístico(a).
 
+Cualquier aporte, sugerencia, corrección es bienvenida. Desde comas, puntos, tildes a fórmulas, definiciones, explicaciones, etc.
+
 ### Nota aparte {-}
 
 

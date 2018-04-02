@@ -15,7 +15,7 @@ bookdown::gitbook:
       collapse: subsection
       scroll_highlight: yes
       before: |
-        <li><a href="./">Libro de notas</a></li>
+        <li><a href="./">Apuntes de estadística</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
     toolbar:

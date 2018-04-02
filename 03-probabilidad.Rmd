@@ -5,7 +5,9 @@ output:
 ---
 # Probabilidad {#prob-3}
 
-Intuitivas en parte, no tanto en varias. Todo es posible, pero a la vez imposible. Sí, de eso se tratan las probabilidades
+Intuitivas en parte, no tanto en varias. Todo es posible, pero a la vez imposible. Sí, de eso se tratan las probabilidades.
+
+La probabilidad no se puede dar por definición, se deriva de axiomas (que veremos en \@ref(tconjuntos-3)) en base a una función de probabilidad. Cualquier cosa que cumpla con los estos 3 axiomas, es una probabilidad. La definición filosófica, la dejamos para otro momento, por ahora nos quedaremos con la definición matemática.
 
 
 ## Conceptos importantes {#cimportantes-3}
@@ -20,3 +22,46 @@ Tal y como nos referimos en \@ref(cbasicos-1), una muestra no puede ser califica
 ### Sesgo
 
 La cualidad de sesgado o insesgado es relativa al estimador, no a la muestra.
+
+
+## Teoría de conjuntos {#tconjuntos-3}
+
+
+## Probabilidades en poblaciones finitas
+
+Y en donde se pueden contar los elementos; también puede ser el caso de poblaciones ¿infinitas?, pero elementos contables (como los números enteros).
+
+
+### Permutaciones y combinaciones
+
+Tenemos:
+
+* Permutaciones: Arreglo ordenado de objetos, con o sin reposición/reemplazo. Es decir, el orden si importa; elegir entre dos letras $A$ y $B$, son elementos distintos $AB$ y $BA$.
+* Combinaciones: Arreglo no ordenado de objetos, con o sin reposición/reemplazo. El orden no importa; elegir entre dos letras $A$ y $B$, son el mismo elemento $AB$ y $BA$.
+
+En el caso equipobrable (cada evento tiene probabilida de ocurrencia $1/n$), se tiene lo siguiente, siendo $r$ el tamaño de la muestra y $n$ un conjunto dado:
+
+```{r permutaciones-combinaciones-equi, echo = FALSE, message = FALSE, warning=FALSE}
+# , fig.cap = 'A figure caption.'
+mdt <- matrix(c('$n^r$', 
+                '$\\frac{(n + r - 1)!}{r!(n-r)!} = \\binom{n + r - 1}{r}$',
+                '$\\frac{n!}{(n-r)!}$', 
+                '$\\frac{n!}{r!(n-r)!} = \\binom{n}{r}$'), 
+              nrow=2, dimnames=list(c("Ordenado (Permutaciones)", "No ordenado (Combinaciones)"), c("Con reemplazo", "Sin reemplazo")))
+knitr::kable(mdt, 'html', caption = 'Cuadro resumen para contar eventos ordenados o no ordenados, con o sin reposición.', booktabs = TRUE, align = "c")
+```
+
+Como se puede apreciar en la tabla \@ref(tab:permutaciones-combinaciones-equi), las combinaciones tienen una notación especial denominada por $\binom{}{}$, que es una abreviatura para dicha formulación. Si pensamos las cuatro expresiones que aparecen, podemos deducir que ante un mismo evento, las permutaciones (donde el orden importa) entregarán un número mayor de eventos posibles, con respecto a las combinaciones. Por otro lado, cuando hay reposición, el número de eventos que se pueden generar también es superior a cuando no hay reposición. Son ideas un poco obvias e intuitivas, pero que vale la pena resaltar.
+
+Veamos un ejemplo de cada caso y como se llega a las formulas resumen de la tabla \@ref(tab:permutaciones-combinaciones-equi), partiendo de la pregunta:
+
+*Si tengo 6 bolas de colores ¿de cuántas maneras puedo tomar 3 bolas?*
+
+1. Permutación con reposición: Si antes de tomar la siguiente bola, devuelvo la que saqué previamente. La primera vez, puedo sacar 6 bolas, la segunda vez también puedo sacar 6 bolas pues he repuesto la que saqué anteriormente y la tercera vez, también puedo tomar 6 bolas. Esto es equivalente a $6 * 6 * 6 = 6^3 = 216$. Es decir, puedo hacerlo de 216 formas posibles.
+
+2. Permutación sin reposición: Si repito el ejercicio el anterior, sin devolver las bolas que voy sacando, obtengo el resultado de multiplicar $6 * 5 * 4 = 120$. Esta operación, la podemos anotar como $\frac{n!}{(n-r)!} = \frac{12!}{(12-3)!} = \frac{6!}{3!} = \frac{6*5*4*3!}{3!}$. Cancelando $3!$, obtenemos la multiplicación deseada. Notar que de forma intuitiva, no podemos obtener un resultado mayor al experimento con reposición, pues cada vez vamos teniendo menos opciones. 
+
+3. Combinación sin reposición: Similar al de permutación con reposición, pero ahora hay que descontar las veces en que la elección tenía los mismos elemntos, pero ordenados de forma diferente. Esto sería $\binom{n}{r} = \frac{n!}{r!(n-r)!} = \frac{6!}{3!(6-3)!} = \frac{6*5*4}{3!} = 20$. En este caso, el $3!$ está contando de cuantas maneras se pueden elegir esas 3 bolas ordenadamente sin reposición y como está en el denominador, estamos descontando dichas combinaciones del espacio de solución. Nuevamente es bueno notar que el resultado esperado, también es un número menor al de una permutación sin reposición (y en realidad, debiera ser siempre el menor de los cuatro casos), pues el orden esta vez no nos interesa, y con ello caen automáticamente el número de casos.
+
+4. Combinación con reposición: Este no es muy similar a nada, y es un poco complejo de explicar. Es mejor ver primero la aplicación, que sería $\binom{n + r - 1}{r} = \frac{(n + r - 1)!}{r!((n + r - 1) - r)!} = \frac{(6 + 3 - 1)!}{3!((6 + 3 - 1) - 3)!} = \frac{8*7*6*5!}{3! 5!} = 56$. El término $r$ queda eliminado en el denominador, con lo que en el fondo queda $\frac{(n + r - 1)!}{r!(n - 1)!}$
+

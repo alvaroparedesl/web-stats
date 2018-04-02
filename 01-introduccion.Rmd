@@ -11,7 +11,13 @@ Por todo lo anterior y otras cosas más, la estadística tiene aspectos subjetiv
 
 Elegir entre un tipo de modelo versus otro para resolver un problema, es una problemática frecuente. Diferentes aproximaciones pueden ser igual de válidas, siempre y cuando entendámos lo que estamos haciendo.
 
-Y por eso en parte, es la razón por la que me animé a hacer esto. Porque quiero entender lo que estoy haciendo. Quiero entenderlo y manipularlo. Y quién sabe, quizás después, crear algo.
+Y por eso en parte, es la razón por la que me animé a hacer esto. Porque quiero entender lo que estoy haciendo. Quiero entenderlo y manipularlo, inventarme mis cosas.
+
+De forma bien secundaria, pero igual importante, porque me permite poner a prueba mi ortografía y redacción. Como no tengo corrector ortográfico en esto, estoy a la deriva y dependeo enteramente de mí (y de los años de de años de practica y de mi madre hinchando para que escriba bien).
+
+Por si hay algún curioso(a) que se pregunta por el formato de mi nombre, he decidido colocar la inicial de mi apellido materno por delante de mi apellido paterno, en homenaje a mi santa madre, que a mi santo padre ya lo he homnejeado/deshonrado bastante. Lo de santos es a modo de joda, que no tienen nada de santos ninguno de los dos.
+
+Nótese que aquí es la única vez que usaré la denotación de doble género para las palabras masculinas en plural (curioso(a) por ejemplo). Como dice la norma, el masculino se usa indistintamente para referirse a masculino/femenino en plural, nada de esas cosas de lenguaje inclusivo y todo eso. Que me da lo mismo si el que lee esto es un extraterrestre, hombre, mujer, homosexual, lesbiana, transgénero, amarillo, negro, blanco pantruca, enano, cojo, tuerto, manco, paralítico, etc.
 
 
 
@@ -26,5 +32,6 @@ Antes de comenzar, es bueno definir algunos conceptos básicos para que hablemos
 - Estimador: es el estadístico usado para aproximar el valor de una parámetro.
 - Estimación: resultado de aplicar el estimador a una muestra.
 - Significancia: (ver \@ref(thipotesis-2))
+- Evento:
 
 

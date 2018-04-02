@@ -44,21 +44,24 @@ Tenemos dos tipos de error y la cuantificación de ellos se da de forma que:
 
 Donde $P$ es la probabilidad de que ocurra el evento determinado.
 
+### Paramétrico {#parametrico-2}
 
-### Caso Normal y varianza conocida
+#### Medias {#medias-parametrica-2}
+
+##### Caso Normal y varianza conocida (una cola)
 
 Para el caso en que queremos comparar si una meda es distinta de otra ^[en este caso de igual o distinto, no se pueden invertir las hipótesis; en $H_0$ debe ir $\mu = \mu_0$], siendo:
 
 \begin{equation}
 H_0: \mu = \mu_0 \\ H_1: \mu \ne \mu_0
-(\#eq:test-hipotesis-general)
+(\#eq:hipotesis-media-1cola)
 \end{equation}
 
 Se rechaza $H_0$ cuando:
 
 \begin{equation}
 |\bar{X} - \mu_0| \geq k
-(\#eq:test-hipotesis-k)
+(\#eq:k-media-1cola)
 \end{equation}
 
 Siendo $\bar{X}$ el promedio de la muestra y $H_0$ corresponde al valor contra el cual se contraste (habitualmente el promedio de la población).
@@ -67,35 +70,83 @@ El valor $k$ determina las probabilidades $P$ de error. Si se fija:
 
 \begin{equation}
 k = \alpha = P(\text{rechazar } H_0 \text{ cuando } H_1 \text{ es correcto}) \\
-= P_{\mu = \mu_0} (|\bar{X} - \mu_0| \geq k) = \alpha\\
-= 1 - P_{\mu = \mu_0} (\mu_0 - k < \bar{X} < \mu_0 + k) = \alpha  \\
-= 1 - P_{\mu = \mu_0} \left (\frac{-k}{\sigma/\sqrt{n}} < \frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}} < \frac{k}{\sigma/\sqrt{n}} \right ) = \alpha
-(\#eq:test-hipotesis-una-cola)
+P_{\mu = \mu_0} (|\bar{X} - \mu_0| \geq k) = \alpha\\
+1 - P_{\mu = \mu_0} (\mu_0 - k < \bar{X} < \mu_0 + k) = \alpha  \\
+1 - P_{\mu = \mu_0} \left (\frac{-k}{\sigma/\sqrt{n}} < \frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}} < \frac{k}{\sigma/\sqrt{n}} \right ) = \alpha
+(\#eq:desarrollo1-media-1cola)
 \end{equation}
 
-Sabemos que si la media de $\mu_0 => \bar{X}~NORMAL(\mu_0, \sigma^2/n)$ entonces:
+Por un de los teoremas de las probabilidades sabemos que $P(A^c) = 1 - P(A)$ y sabemos que si la media de $\mu_0 => \bar{X}~NORMAL(\mu_0, \sigma^2/n)$ entonces podemos asumir $Z = \frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}}$:
 
 \begin{equation}
-$\left (\frac{-k}{\sigma/\sqrt{n}} < \frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}} $
+P_{\mu = \mu_0} \left (\frac{-k}{\sigma/\sqrt{n}} < Z < \frac{k}{\sigma/\sqrt{n}} \right ) = 1 - \alpha \\
+\Leftrightarrow \frac{k}{\sigma/\sqrt{n}} = Z_{1 - \alpha/2} \\
+k = \sigma/\sqrt{n} * Z_{1 - \alpha/2}
+(\#eq:desarrollo2-media-1cola)
+\end{equation}
+
+Rechazo $H_0$ si $|\bar{x} - \mu_0| \ge \sigma/\sqrt{n} * Z_{1 - \alpha/2}$ y por lo tanto:
+
+\begin{equation}
+Z_0 = \frac{|\bar{x} - \mu_0|}{\sigma/\sqrt{n}} \ge Z_{1 - \alpha/2}
+(\#eq:Z0-media-1cola)
 \end{equation}
 
 Obviamente, este caso se da, cuando se cumplen los supuestos de:
+
 1. La población distribuye normal.
 2. Varianza ($\sigma$) de la población conocida.
 
+Como ejemplo, supongamos tenemos una muestra de 20 muestras de sangre y queremos comparar la concentración de linfositos para saber si son distintos al promedio de la población. Supongamos queremos hacerlo al 5%.
 
-### Caso normal y varianza desconocida
+```{r echo=FALSE}
+options(digits=3)
+set.seed(979)
+mu <- 3 # nanolitros nL
+sd0 <- .25
+xs <- rnorm(20, mu+sd0/2, sd0)
+alfa <- .05
+
+Z0 = abs(mean(xs) - mu)/(sd0/length(xs)^.5)
+Z0 >= qnorm(1 - alfa/2)
+
+2*(1 - pnorm(Z0))
+```
 
 
-### Caso no normal y varianza conocida
+
+
+##### Caso normal y varianza desconocida (una cola)
+
+
+##### Caso no normal y varianza conocida (una cola)
 
 El pero, está en que nuestro $n$ debe ser grande para poder aplicar el análisis sin problemas ¿Cuán grande? Por sobre 30 datos supuestamente.
 
 
+##### Caso Normal y varianza conocida (dos colas)
+
+
+##### Caso normal y varianza desconocida (dos colas)
+
+
+##### Caso no normal y varianza conocida (dos colas)
+
+
+#### Varianza {#varianza-parametrica-2}
+
+
+### No paramétrico
+
+
+
 ### El valor Z
 
+La idea de usar $n > 30$ es la sigueinte, pero no funciona parece...
+
 ```{r histo-1, tidy=FALSE}
-hist(unlist(lapply(1:1000, FUN = function(x) mean(runif(2)))), 10,
+population <- rnorm(30)
+hist(unlist(lapply(1:30, FUN = function(x) mean(sample(population, 2)))), 10,
      main="", xlab="Mean")
 ```
 
