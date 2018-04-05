@@ -3,17 +3,17 @@ output:
   pdf_document: default
   html_document: default
 ---
-# Probabilidad {#prob-3}
+# Probabilidad {#prob-2}
 
 Intuitivas en parte, no tanto en varias. Todo es posible, pero a la vez imposible. Sí, de eso se tratan las probabilidades.
 
-La probabilidad no se puede dar por definición, se deriva de axiomas (que veremos en \@ref(tconjuntos-3)) en base a una función de probabilidad. Cualquier cosa que cumpla con los estos 3 axiomas, es una probabilidad. La definición filosófica, la dejamos para otro momento, por ahora nos quedaremos con la definición matemática.
+La probabilidad no se puede dar por definición, se deriva de axiomas (que veremos en \@ref(tconjuntos-2)) en base a una función de probabilidad. Cualquier cosa que cumpla con los estos 3 axiomas, es una probabilidad. La definición filosófica, la dejamos para otro momento, por ahora nos quedaremos con la definición matemática.
 
 
-## Conceptos importantes {#cimportantes-3}
+## Conceptos importantes {#cimportantes-2}
 
 
-### Muestras significativas {#msignificativas-3}
+### Muestras significativas {#msignificativas-2}
 
 Tal y como nos referimos en \@ref(cbasicos-1), una muestra no puede ser calificada de *"significativa"*. Como la mayoría de las veces desconocemos las características que nos interesan de la población, es imposible saber si dicha muestra es o no es significativa. Por lo tanto el concepto es absurdo. Lo que sí es necesario de una muestra, es que su origen debe ser probabilístico, lo que se traduce en que debe ser posible asignarle una probabilidad de ser seleccionada (probabilidad de obtener dicha muestra).
 
@@ -24,7 +24,7 @@ Tal y como nos referimos en \@ref(cbasicos-1), una muestra no puede ser califica
 La cualidad de sesgado o insesgado es relativa al estimador, no a la muestra.
 
 
-## Teoría de conjuntos {#tconjuntos-3}
+## Teoría de conjuntos {#tconjuntos-2}
 
 
 ## Probabilidades en poblaciones finitas
@@ -41,7 +41,7 @@ Tenemos:
 
 En el caso equipobrable (cada evento tiene probabilida de ocurrencia $1/n$), se tiene lo siguiente, siendo $r$ el tamaño de la muestra y $n$ un conjunto dado:
 
-```{r permutaciones-combinaciones-equi, echo = FALSE, message = FALSE, warning=FALSE}
+```{r permutaciones-combinaciones-equi-2, echo = FALSE, message = FALSE, warning=FALSE}
 # , fig.cap = 'A figure caption.'
 mdt <- matrix(c('$n^r$', 
                 '$\\frac{(n + r - 1)!}{r!(n-r)!} = \\binom{n + r - 1}{r}$',
@@ -51,9 +51,9 @@ mdt <- matrix(c('$n^r$',
 knitr::kable(mdt, 'html', caption = 'Cuadro resumen para contar eventos ordenados o no ordenados, con o sin reposición.', booktabs = TRUE, align = "c")
 ```
 
-Como se puede apreciar en la tabla \@ref(tab:permutaciones-combinaciones-equi), las combinaciones tienen una notación especial denominada por $\binom{}{}$, que es una abreviatura para dicha formulación. Si pensamos las cuatro expresiones que aparecen, podemos deducir que ante un mismo evento, las permutaciones (donde el orden importa) entregarán un número mayor de eventos posibles, con respecto a las combinaciones. Por otro lado, cuando hay reposición, el número de eventos que se pueden generar también es superior a cuando no hay reposición. Son ideas un poco obvias e intuitivas, pero que vale la pena resaltar.
+Como se puede apreciar en la tabla \@ref(tab:permutaciones-combinaciones-equi-2), las combinaciones tienen una notación especial denominada por $\binom{}{}$, que es una abreviatura para dicha formulación. Si pensamos las cuatro expresiones que aparecen, podemos deducir que ante un mismo evento, las permutaciones (donde el orden importa) entregarán un número mayor de eventos posibles, con respecto a las combinaciones. Por otro lado, cuando hay reposición, el número de eventos que se pueden generar también es superior a cuando no hay reposición. Son ideas un poco obvias e intuitivas, pero que vale la pena resaltar.
 
-Veamos un ejemplo de cada caso y como se llega a las formulas resumen de la tabla \@ref(tab:permutaciones-combinaciones-equi), partiendo de la pregunta:
+Veamos un ejemplo de cada caso y como se llega a las formulas resumen de la tabla \@ref(tab:permutaciones-combinaciones-equi-2), partiendo de la pregunta:
 
 *Si tengo 6 bolas de colores ¿de cuántas maneras puedo tomar 3 bolas?*
 
@@ -63,5 +63,5 @@ Veamos un ejemplo de cada caso y como se llega a las formulas resumen de la tabl
 
 3. Combinación sin reposición: Similar al de permutación con reposición, pero ahora hay que descontar las veces en que la elección tenía los mismos elemntos, pero ordenados de forma diferente. Esto sería $\binom{n}{r} = \frac{n!}{r!(n-r)!} = \frac{6!}{3!(6-3)!} = \frac{6*5*4}{3!} = 20$. En este caso, el $3!$ está contando de cuantas maneras se pueden elegir esas 3 bolas ordenadamente sin reposición y como está en el denominador, estamos descontando dichas combinaciones del espacio de solución. Nuevamente es bueno notar que el resultado esperado, también es un número menor al de una permutación sin reposición (y en realidad, debiera ser siempre el menor de los cuatro casos), pues el orden esta vez no nos interesa, y con ello caen automáticamente el número de casos.
 
-4. Combinación con reposición: Este no es muy similar a nada, y es un poco complejo de explicar. Es mejor ver primero la aplicación, que sería $\binom{n + r - 1}{r} = \frac{(n + r - 1)!}{r!((n + r - 1) - r)!} = \frac{(6 + 3 - 1)!}{3!((6 + 3 - 1) - 3)!} = \frac{8*7*6*5!}{3! 5!} = 56$. El término $r$ queda eliminado en el denominador, con lo que en el fondo queda $\frac{(n + r - 1)!}{r!(n - 1)!}$
+4. Combinación con reposición: Este no es muy similar a nada, y es un poco complejo de explicar. Es mejor ver primero la aplicación, que sería $\binom{n + r - 1}{r} = \frac{(n + r - 1)!}{r!((n + r - 1) - r)!} = \frac{(6 + 3 - 1)!}{3!((6 + 3 - 1) - 3)!} = \frac{8*7*6*5!}{3! 5!} = 56$. El término $r$ queda eliminado en el denominador, con lo que en el fondo queda $\frac{(n + r - 1)!}{r!(n - 1)!}$. Es de esperar que al ser con reposición, se obtenga un número superior a sin reposición, y obviamente, por debajo de al menos el caso de permutación con reposición.
 

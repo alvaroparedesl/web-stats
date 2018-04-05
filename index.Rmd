@@ -23,6 +23,16 @@ Cualquier aporte, sugerencia, corrección es bienvenida. Desde comas, puntos, ti
 
 ### Nota aparte {-}
 
+```{r echo=FALSE}
+# Por si hay algún curioso(a) que se pregunta por el formato de mi nombre, he decidido colocar la inicial de mi apellido materno por delante de mi apellido paterno, en homenaje a mi santa madre, que a mi santo padre ya lo he homnejeado/deshonrado bastante. Lo de santos es a modo de joda, que no tienen nada de santos ninguno de los dos.
+# 
+# Nótese que aquí es la única vez que usaré la denotación de doble género para las palabras masculinas en plural (curioso(a) por ejemplo). Como dice la norma, el masculino se usa indistintamente para referirse a masculino/femenino en plural, nada de esas cosas de lenguaje inclusivo y todo eso. Que me da lo mismo si el que lee esto es un extraterrestre, hombre, mujer, homosexual, lesbiana, transgénero, amarillo, negro, blanco pantruca, enano, cojo, tuerto, manco, paralítico, etc.
+
+
+# Y por eso en parte, es la razón por la que me animé a hacer esto. Porque quiero entender lo que estoy haciendo. Quiero entenderlo y manipularlo, inventarme mis cosas.
+# 
+# De forma bien secundaria, pero igual importante, porque me permite poner a prueba mi ortografía y redacción. Como no tengo corrector ortográfico en esto, estoy a la deriva y dependeo enteramente de mí (y de los años de de años de practica y de mi madre hinchando para que escriba bien).
+```
 
 This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.
 

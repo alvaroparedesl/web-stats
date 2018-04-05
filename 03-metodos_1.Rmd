@@ -1,0 +1,310 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Métodos Estadísticos 1 {#met1-3}
+
+## Concetos básicos {#cbasicos-3}
+
+1. Un estudio es diferente a un experimento; este último es controlado, mientras que el primero no lo es. ^[Ejemplo de esto puede ser
+el caso de encuestas o estudios similares o de observación y estudio de fenómenos naturales.]
+2. Los datos tienen un promedio; el modelo tiene media.
+
+## Test de hipótesis {#thipotesis-3}
+
+Un par de conceptos:
+
+- $\alpha(p)$ es la probabilidad de rechazar equivocadamente $H_0$ (es lo que trato de mantener bajo, pues no me quiero equivocar).
+- No hay una forma fácil y efectiva de calcular el error $\alpha$ de $H_1$.
+
+Por lo anterior, es muy importante definir $H_0$ y $H_1$ en el orden correcto, según el objetivo del estudio y el tipo de problema. Normalmente, $H_1$ es lo que quiero aceptar (siempre y cuando sea un problema del tipo invervalo $\geq$ o $\leq$).
+
+Finalmente, siempre se habla de significancia, pero como vimos en el capítulo \@ref(cbasicos-1) corresponde a .... COMPLETAR. Depende del tamaño de la muestra (en proporción a la población) y de su variabilidad (tanto de la muestra como de la población).
+
+
+### Tipos de error {#terror-3}
+
+Esto de seguro ha sido visto mil y una veces, pero no está demás mostrarlo. En la tabla \@ref(tab:tipos-error).
+
+```{r tipos-error, echo = FALSE, message = FALSE, warning=FALSE}
+# , fig.cap = 'A figure caption.'
+mdt <- matrix(c("--", "Error tipo II", "Error tipo I", "--"), 
+              nrow=2, dimnames=list(c("$H_0$ cierto", "$H_1$ cierto"), c("No rechazo", "Rechazo")))
+knitr::kable(mdt, 'html', caption = 'Tipos de error y sus características.', booktabs = TRUE, align = "c")
+```
+
+Un detalle importante. Hay que notar que no dice *"acepto"*, o alguna de sus acepciones, en ninguna parte. Una sutileza muy importante como veremos más adelante.
+
+Tenemos dos tipos de error y la cuantificación de ellos se da de forma que:
+
+- $\alpha = P$(cometer error tipo I)
+- $\beta = P$(cometer error tipo II)
+- potencia $= 1 - \beta = P$(rechazar $H_0$, cuando $H_1$ es cierto)
+
+Donde $P$ es la probabilidad de que ocurra el evento determinado.
+
+
+## Valor-*p* {#valorp-3}
+
+¿Qué significa? Matemáticamente, el área bajo la curva (probabilidad acumulada). Conceptualmente, nos dice que tan fuerta es la evidencia. Mientras más pequeño, es evidencia más fuerte para rechazar $H_0$ (cualquiera que sea). 
+
+Por ahora usamos el ejemplo de dos colas, pero el principio es el mismo para una cola (izquierda o derecha), solo que cuando es una cola, en vez de multiplicar por 2, se calcula directamente (sólo tenemos un área de rechazo y no dos)
+
+Como es una probabilidad acumulada (va de 0 a 1), es comparable directamente con $\alpha$, que también es una medida de probabilidad de cuanto riesgo estoy dispuesto a asumir, lo que facilita la comparación, ya que se puede hacer directamente.
+
+El valor-*p* se utiliza normalmente cuando hay distribuciones simétricas??, pero también se puede calcular para los casos en que no lo es, sólo que es un poco más complejo??
+
+Tomando como base la sección \@ref(media-parametrica-1cola), específicamente el ejemplo \@ref(eq:ejemplo-media-1cola) ¿Por qué el valor-*p* se calcula de esa manera? Porque el valor-*p* es en el fondo al área bajo la curva de la probabilidad acumulada de la zona que cumple la condición definida, el área roja de la figura \@ref(fig:normal-3). Como la curva es simétrica, basta con calcular a un lado (el derecho usualmente) y multiplicar por 2.
+
+
+## Tests Paramétricos {#parametricos-3}
+
+Son aquellos casos en que se asume que los datos siguen alguna distribución conocida y normalmente las inferencias se realizan sobre la media y la varianza.
+
+### Medias {#media-parametrica-3}
+
+Se hará una explicación más detallada del primer caso, y en lo siguientes sólo se incluirá el ejemplo de cálculo y el estadístico de correspondiente. En el fondo, los otros casos siguen la misma lógica.
+
+A continuación se puede apreciar la tabla \@ref(tab:resumen-media-normal) que muestra el resumen de la hipotésis, el estadístico y el cálculo del valor-*p*. Los detalles y explicaciones podrán ser vistos en las subsecciones que siguen. Nótese que el caso no normal con $\sigma$ conocida utiliza la misma formulación que el caso normal y $\sigma$ conocida, pero se aplica a $n$ grandes (capítulo \@ref(media-parametrica-1cola-unk)).
+
+
+
+```{r resumen-media-normal, echo = FALSE, message = FALSE, warning=FALSE}
+# , fig.cap = 'A figure caption.'
+mdt <- matrix(c("$H_0: \\mu = \\mu_0, H_1: \\mu \\neq \\mu_0$", 
+                "$Z_0 = \\frac{|\\bar{x} - \\mu_0|}{\\sigma/\\sqrt{n}} \\ge Z_{1 - \\alpha/2}$", 
+                "$2 * (1 - \\Phi(Z_0))$", 
+                "2*(1 - pnorm($Z_0$))",
+                
+                "$H_0: \\mu = \\mu_0, H_1: \\mu \\neq \\mu_0$", 
+                "$t_0 = \\frac{|\\bar{x} - \\mu_0|}{S/\\sqrt{n}} \\ge t_{1 - \\alpha/2}^{n-1}$", 
+                "$2 * (1 - P(t_{n-1} \\leq t_0))$", 
+                "2*(1 - pt($t_0$, n-1))",
+                
+                "$H_0: \\mu \\leq \\mu_0, H_1: \\mu \\gt \\mu_0$", 
+                "$Z_0 = \\frac{\\bar{x} - \\mu_0}{\\sigma/\\sqrt{n}} \\ge Z_{1 - \\alpha}$", 
+                "$1 - \\Phi(Z_0)$", 
+                "1 - pnorm($Z_0$)",
+                
+                "$H_0: \\mu \\leq \\mu_0, H_1: \\mu \\gt \\mu_0$", 
+                "$t_0 = \\frac{\\bar{x} - \\mu_0}{S/\\sqrt{n}} \\ge t_{1 - \\alpha}^{n-1}$", 
+                "$1 - P(t_{n-1} \\leq t_0)$", 
+                "1 - pt($t_0$, n-1)",
+                
+                "$H_0: \\mu \\geq \\mu_0, H_1: \\mu \\lt \\mu_0$", 
+                "$Z_0 = \\frac{\\bar{x} - \\mu_0}{\\sigma/\\sqrt{n}} \\le Z_{\\alpha}$", 
+                "$\\Phi(Z_0)$", 
+                "pnorm($Z_0$)",
+                
+                "$H_0: \\mu \\geq \\mu_0, H_1: \\mu \\lt \\mu_0$", 
+                "$t_0 = \\frac{\\bar{x} - \\mu_0}{S/\\sqrt{n}} \\le t_{\\alpha}^{n-1}$", 
+                "$P(t_{n-1} \\leq t_0)$", 
+                "pt($t_0$, n-1)"
+                ),
+              ncol=4, byrow=T,
+              dimnames=list(c("Normal y $\\sigma$ conocida",
+                              "Normal y $\\sigma$ desconocida",
+                              "Normal y $\\sigma$ conocida",
+                              "Normal y $\\sigma$ desconocida",
+                              "Normal y $\\sigma$ conocida",
+                              "Normal y $\\sigma$ desconocida"), 
+                            c("Hipótesis", "Estadístico", "Valor-*p*", "Valor-*p* (R)" )))
+knitr::kable(mdt, 'html', caption = 'Resumen de hipótesis, estadísticos y cálculo del valor-*p* para comparación de medias normales.', booktabs = TRUE, align = "c")
+```
+
+#### Caso Normal y varianza conocida (una cola) {#media-parametrica-1cola}
+
+Para el caso en que queremos comparar si una meda es distinta de otra ^[en este caso de igual o distinto, no se pueden invertir las hipótesis; en $H_0$ debe ir $\mu = \mu_0$], siendo:
+
+\begin{equation}
+H_0: \mu = \mu_0 \\ H_1: \mu \ne \mu_0
+(\#eq:hipotesis-media-1cola)
+\end{equation}
+
+Se rechaza $H_0$ cuando:
+
+\begin{equation}
+|\bar{X} - \mu_0| \geq k
+(\#eq:k-media-1cola)
+\end{equation}
+
+Siendo $\bar{X}$ el promedio de la muestra y $H_0$ corresponde al valor contra el cual se contraste (habitualmente el promedio de la población).
+
+Primero veamos visualmente que es lo que se tratará de hacer. Teniendo una media poblacional $\mu_0$ ubicada en cierto punto de una recta ¿Cuán lejos de $\mu_0$ estamos dispuestos a asumir que las medias son iguales (aunque matemáticamente no lo sean)? Como queremos probar igualdad o diferencia, la distancia a $\mu_0$ es hacia adelante y hacia atrás. Si esa distancia la denominamos $k$, entonces cualquier valor dentro del interalo $[\mu_0 - k, \mu_0 + k]$ lo vamos a considerar como idéntico a $\mu_0$. 
+
+Por lo tanto, el valor $k$ determina las probabilidades $P$ de error. En estricto rigor, $k$ es un número que representa unidades de alguna variable definida. Si se fija:
+
+\begin{equation}
+k = \alpha = P(\text{rechazar } H_0 \text{ cuando } H_1 \text{ es correcto}) \\
+P_{\mu = \mu_0} (|\bar{X} - \mu_0| \geq k) = \alpha\\
+1 - P_{\mu = \mu_0} (\mu_0 - k < \bar{X} < \mu_0 + k) = \alpha  \\
+1 - P_{\mu = \mu_0} \left (\frac{-k}{\sigma/\sqrt{n}} < \frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}} < \frac{k}{\sigma/\sqrt{n}} \right ) = \alpha
+(\#eq:desarrollo1-media-1cola)
+\end{equation}
+
+Visualmente, se puede ver parte de la formulación en la figura \@ref(fig:normal-3).
+
+```{r normal-3, fig.cap = "Explicación visual de las áreas de rechazo (en rojo) y las áreas de aceptación (sector blanco bajo la curva) para una distribución normal", echo=FALSE, fig.width = 4.5, fig.asp = 0.7, fig.align = 'center'}
+library(latex2exp)
+opar <- par()$mar
+par(mar=c(3,1,1,1))
+x <- seq(-4, 4, length=200)
+y <- dnorm(x)  # curve podria ser tb
+xp <- c(-1.5, 1.5)
+plot(x, y, xlim=c(-3, 3), type="l", xlab='', ylab='', xaxt="n", yaxt="n", bty='n', yaxs="i")
+axis(1, at=c(-6, xp[1], 0, xp[2], 6), labels=c(-6, TeX('$\\mu_0 - k$'), TeX('$\\bar{X}$'), TeX('$\\mu_0 + k$'), 6))
+polygon(c( x[x > xp[2]], min(x[x > xp[2]])), c(y[x > xp[2]], 0), col="red")
+polygon(c( x[x < xp[1]], max(x[x < xp[1]])), c(y[x < xp[1]], 0), col="red")
+arrows(xp[1]-.2, .05, xp[1]-1, .15, code = 2, lwd = 2, col = 'black')
+arrows(xp[2]+.2, .05, xp[2]+1, .15, code = 2, lwd = 2, col = 'black')
+text(0, .15 + .02, TeX('$P(\\mu_0 - k < \\bar{X} < \\mu_0 + k)$'))
+text(xp[1] - 1, .15 + .02, TeX('$P(\\bar{X} \\leq \\mu_0 - k)$'))
+text(xp[2] + 1, .15 + .02, TeX('$P(\\bar{X} \\geq \\mu_0 + k)$'))
+text(0, .02, TeX('$1 - \\alpha$'))
+text(xp[1] - .5, .02, TeX('$\\alpha/2$'), col='white', lwd=2)
+text(xp[2] + .5, .02, TeX('$\\alpha/2$'), col='white', lwd=2)
+par(mar=opar)
+```
+
+Por uno de los teoremas de las probabilidades sabemos que $P(A^c) = 1 - P(A)$ y sabemos que si la media de $\mu_0 => \bar{X}~NORMAL(\mu_0, \sigma^2/n)$ entonces podemos asumir $Z = \frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}}$:
+
+\begin{equation}
+P_{\mu = \mu_0} \left (\frac{-k}{\sigma/\sqrt{n}} < Z < \frac{k}{\sigma/\sqrt{n}} \right ) = 1 - \alpha \\
+\Leftrightarrow \frac{k}{\sigma/\sqrt{n}} = Z_{1 - \alpha/2} \\
+k = \sigma/\sqrt{n} * Z_{1 - \alpha/2}
+(\#eq:desarrollo2-media-1cola)
+\end{equation}
+
+Rechazo $H_0$ si $|\bar{x} - \mu_0| \ge \sigma/\sqrt{n} * Z_{1 - \alpha/2}$ y por lo tanto:
+
+\begin{equation}
+Z_0 = \frac{|\bar{x} - \mu_0|}{\sigma/\sqrt{n}} \ge Z_{1 - \alpha/2}
+(\#eq:Z0-media-1cola)
+\end{equation}
+
+Obviamente, este caso se da, cuando se cumplen los supuestos de:
+
+1. La población distribuye normal $X_1, X_2, ... , X_n \stackrel{iid}{\sim} NORMAL(\mu, \sigma^2)$
+2. Varianza ($\sigma^2$) de la población conocida.
+
+Como ejemplo, supongamos tenemos 20 muestras de sangre y queremos comparar la concentración de magnesio ($mg/dL$) para saber si son distintos al promedio de la población y queremos hacerlo con un 5% significancia.
+
+La muestra que nos entregaron tiene los siguientes datos:
+
+```{r echo=FALSE}
+set.seed(979)
+mu0 <-  2.1 # mg/dL magnesio
+sd0 <- .25
+xs <- round(rnorm(20, mu0+9*sd0/20, sd0), 2)
+xs
+```
+
+La media ($\bar{X}$) muestral es `r round(mean(xs), 2)`. La media ($\mu_0$) y varianza ($\sigma$) poblacional proporcionadas corresponden a 2.1 y 0.25 respectivamente. El nivel de significancia $\alpha$ es de 0.05. Con estos datos ya podemos completar en la ecuación \@ref(eq:Z0-media-1cola) y resolver. Primero planteamos la hipótesis:
+
+\begin{equation}
+H_0: \mu = 2.1 \\
+H_1: \mu \ne 2.1
+(\#eq:ejemplo-media-1cola)
+\end{equation}
+
+Resolviendo directamente en R: 
+
+```{r}
+mu0 <-  2.1 # mg/dL magnesio
+xs <- c(2.29, 2.35, 2.03, 1.97, 2.12, 2.38, 2.17, 2.54, 2.14, 2.27, 
+        2.22, 1.89, 2.44, 2.3, 2.05, 2.18, 2.22, 2.36, 2.3, 2.17)
+sd0 <- 0.25
+alfa <- 0.05
+
+# Calculo del estadístico
+Z0 <- abs(mean(xs) - mu0)/(sd0/length(xs)^.5)
+Z0 >= qnorm(1 - alfa/2)
+
+# Valor p
+2*(1 - pnorm(Z0))
+```
+
+Se cumple \@ref(eq:Z0-media-1cola), por lo tanto se rechaza la hipótesis $H_0$ y se acepta la alternativa. La función ```qnorm``` permite obtener el cuantil deseado de la distribución normal en base a la probabilidad deseada, mientras que ```pnorm``` entrega la función de distribución. El valor-*p*, siempre en concordancia con lo que arroja el estadístico, también llega a la misma conclusión, al ser menor que 0.05. Mayor información sobre el valor-*p* se puede ver en el apartado \@ref(valorp-3).
+
+
+#### Caso normal y varianza desconocida (una cola)
+
+
+#### Caso no normal y varianza conocida (una cola) {#media-parametrica-1cola-unk}
+
+Igual que en el caso \@ref(media-parametrica-1cola), la diferencia radica en que nuestro $n$ debe ser grande para poder aplicar el análisis sin problemas ¿Cuán grande? Es variable, pero sobre 30 datos es aceptado. La razón de esto tiene que ver con los grandes números, pero se puede resumir en que el promedio distribuye normal con números grandes; siempre va a depender de los datos con los que se cuente, pero si se mira el siguiente ejemplo, puede quedar un poco más claro.
+
+Genero $n$ números con distribución uniforme (completamente al azar, cada uno tiene la misma probabilidad de ser elegido). Luego se calcula el promedio de a pares y es de esperar, que esos promedios distribuyan normal. En este caso, se generaron 60 números, para generar 30 promedios.
+
+```{r fig.width = 4.5, fig.asp = 0.7, fig.align = 'center'}
+n <- 60
+set.seed(979)
+rn <- runif(n)
+dt <- matrix(rn, ncol=2)
+hist(rowMeans(dt), xlab="", main='')
+```
+
+Bueno... casi normal. Si el experimento se repite con $n$ grande, como 1000 o 10000, funciona perfecto.
+
+
+#### Caso Normal y varianza conocida (dos colas)
+
+
+#### Caso normal y varianza desconocida (dos colas)
+
+
+#### Caso no normal y varianza conocida (dos colas)
+
+
+
+### Varianza {#varianza-parametrica-3}
+
+En todos los casos se asume que existe una distribución normal. Es importante resaltar que como en este caso se utiliza la distribución chi cuadrada ($\chi^2$) de características asimétricas.
+
+Al igual que con el caso sobre las medias (sección \@ref(media-parametrica-3)), se presenta la tabla resumen \@ref(tab:resumen-varianza-normal) y luego en cada subsección se podrán encontrar más detalles.
+
+```{r resumen-varianza-normal, echo = FALSE, message = FALSE, warning=FALSE}
+# , fig.cap = 'A figure caption.'
+library(kableExtra)
+mdt <- matrix(c("$H_0: \\sigma = \\sigma_0, H_1: \\sigma \\neq \\sigma_0$", 
+                "$\\chi_0 = (n-1)\\frac{S^2}{\\sigma^2_0} \\ge \\chi^2_{n-1, 1 - \\alpha/2}$ $\\chi_0 = (n-1)\\frac{S^2}{\\sigma^2_0} \\le \\chi^2_{n-1, \\alpha/2}$", 
+                "fix $2 * (1 - \\Phi(Z_0))$", 
+                "fix 2*(1 - pnorm($Z_0$))",
+                
+                "$H_0: \\sigma \\leq \\sigma_0, H_1: \\sigma \\gt \\sigma_0$", 
+                "$\\chi_0 = (n-1)\\frac{S^2}{\\sigma^2_0} \\ge \\chi^2_{n-1, 1 - \\alpha}$", 
+                "fix $1 - \\Phi(Z_0)$", 
+                "fix 1 - pnorm($Z_0$)",
+                
+                "$H_0: \\sigma \\geq \\sigma_0, H_1: \\sigma \\lt \\mu_0$", 
+                "$\\chi_0 = (n-1)\\frac{S^2}{\\sigma^2_0} \\le \\chi^2_{n-1, \\alpha}$", 
+                "fix $\\Phi(Z_0)$", 
+                "fix pnorm($Z_0$)"
+                ),
+              ncol=4, byrow=T,
+              dimnames=list(c("Normal y $\\sigma$ desconocida",
+                              "Normal y $\\sigma$ desconocida",
+                              "Normal y $\\sigma$ desconocida"), 
+                            c("Hipótesis", "Estadístico", "Valor-*p*", "Valor-*p* (R)" )))
+knitr::kable(mdt, 'html', caption = 'Resumen de hipótesis, estadísticos y cálculo del valor-*p* para comparación de varianzas normales.', 
+             booktabs = TRUE, align = "c") %>% column_spec(5, "10em")
+```
+
+
+#### Normal y varianza desconocida (dos colas)
+
+Hay que considerar que el cálculo del valor-*p* en esta instancia es un poco más complejo, puesto que la distribución no es simétrica. 
+
+#### Normal y varianza desconocida (una cola)
+
+### Proporción (probabilidad) {#proporcion-3}
+
+### Comparación de medias {#comparacion-medias-3}
+
+## No paramétricos {#noparametricos-3}
+
+Son aquellos casos en que no se asume que los datos siguen alguna distribución conocida y las inferencias se pueden realizar sobre otras características de la distribución, no solo la media y la varianza (la mediana por ejemplo). Al contrario que el caso paramétrico (capítulo \@ref(parametricos-3)).
+
+
+You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].

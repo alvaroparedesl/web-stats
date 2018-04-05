@@ -5,33 +5,24 @@ output:
 ---
 # Introducción {#intro-1}
 
-La estadística está basada en las matemáticas (como la gran mayoría de las ciencas), y las matemáticas a su vez, son un constructo del ser humano. Es lo mejor que tenemos para representar la realidad, es lo que nos ha llevado a tener las grandes invenciones y avances de nuestra era. A veces esta simplificación funciona tan bien como la realidad misma, a veces no tanto, mas no es relevante para el objetivo del problema y a veces nos hace chocar de bruces contra un muro. Cosas de la vida.
+La estadística está basada en las matemáticas (como la gran mayoría de las ciencias), y las matemáticas a su vez, son un constructo del ser humano. Es lo mejor que tenemos para representar la realidad, es lo que nos ha llevado a tener las grandes invenciones y avances de nuestra era. A veces esta simplificación funciona tan bien como la realidad misma, a veces no tanto, mas no es relevante para el objetivo del problema y a veces nos hace chocar de bruces contra un muro. Cosas de la vida.
 
 Por todo lo anterior y otras cosas más, la estadística tiene aspectos subjetivos bastante relevantes. Lo absoluto, lo cierto, lo concreto, pueden ir variando dependiendo de como afrontemos el problema, de los supuestos que se asumen y de la perspectiva del observador. Mucha variabilidad, sí, pero vamos que todos quienes hayan estudiado esto han pasado por eso... nadie se salva.
 
 Elegir entre un tipo de modelo versus otro para resolver un problema, es una problemática frecuente. Diferentes aproximaciones pueden ser igual de válidas, siempre y cuando entendámos lo que estamos haciendo.
 
-Y por eso en parte, es la razón por la que me animé a hacer esto. Porque quiero entender lo que estoy haciendo. Quiero entenderlo y manipularlo, inventarme mis cosas.
-
-De forma bien secundaria, pero igual importante, porque me permite poner a prueba mi ortografía y redacción. Como no tengo corrector ortográfico en esto, estoy a la deriva y dependeo enteramente de mí (y de los años de de años de practica y de mi madre hinchando para que escriba bien).
-
-Por si hay algún curioso(a) que se pregunta por el formato de mi nombre, he decidido colocar la inicial de mi apellido materno por delante de mi apellido paterno, en homenaje a mi santa madre, que a mi santo padre ya lo he homnejeado/deshonrado bastante. Lo de santos es a modo de joda, que no tienen nada de santos ninguno de los dos.
-
-Nótese que aquí es la única vez que usaré la denotación de doble género para las palabras masculinas en plural (curioso(a) por ejemplo). Como dice la norma, el masculino se usa indistintamente para referirse a masculino/femenino en plural, nada de esas cosas de lenguaje inclusivo y todo eso. Que me da lo mismo si el que lee esto es un extraterrestre, hombre, mujer, homosexual, lesbiana, transgénero, amarillo, negro, blanco pantruca, enano, cojo, tuerto, manco, paralítico, etc.
-
-
 
 ## Concetos básicos {#cbasicos-1}
 
-Antes de comenzar, es bueno definir algunos conceptos básicos para que hablemos el mismo *idioma*. Comprendo que si lees esto hablas español, pero me refiero a aunar criterios y *"hablar de lo mismo"* cuando estemos defininiendo o haciendo algunos análisis. Que en el fondo es decir que una docena son 12 unidades de algo y no 11 ni 10.
+Antes de comenzar, es bueno definir algunos conceptos básicos para que hablemos el mismo *idioma*. Comprendo que si lees esto hablas español, pero me refiero a aunar criterios y *"hablar de lo mismo"* cuando estemos defininiendo o haciendo algunos análisis. Que en el fondo es decir que una docena son 12 unidades de algo y no 11 ni 10 ni 13.
 
 - Población: todos los sujetos o entidades de interés, que poseen una o varias características que nos gustaría estudiar. En la gran mayoría de los casos acceder a la población es imposible y por tanto, sus características reales son desconocidas.
-- Muestra: es un subconjunto de la población. La muestra no puede ser *"representativa"*. Dicho concepto está mal utilizado en la mayoría de los casos (ver \@ref(cimportantes-3))
+- Muestra: es un subconjunto de la población. La muestra no puede ser *"representativa"*. Dicho concepto está mal utilizado en la mayoría de los casos (ver \@ref(cimportantes-2))
 - Parámetro: característica númerica resumen de la población.
 - Estadístico: característica númerica resumen de la muestra.
 - Estimador: es el estadístico usado para aproximar el valor de una parámetro.
 - Estimación: resultado de aplicar el estimador a una muestra.
-- Significancia: (ver \@ref(thipotesis-2))
+- Significancia: (ver \@ref(thipotesis-3))
 - Evento:
 
 

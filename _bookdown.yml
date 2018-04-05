@@ -2,3 +2,6 @@ book_filename: "stats"
 language:
   ui:
     chapter_name: "Capítulo "
+  label:
+    fig: "Figura  "
+    tab: "Tabla "
