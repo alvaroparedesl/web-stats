@@ -55,7 +55,7 @@ Como es una probabilidad acumulada (va de 0 a 1), es comparable directamente con
 
 El valor-*p* se utiliza normalmente cuando hay distribuciones simétricas??, pero también se puede calcular para los casos en que no lo es, sólo que es un poco más complejo??
 
-Tomando como base la sección \@ref(media-parametrica-1cola), específicamente el ejemplo \@ref(eq:ejemplo-media-1cola) ¿Por qué el valor-*p* se calcula de esa manera? Porque el valor-*p* es en el fondo al área bajo la curva de la probabilidad acumulada de la zona que cumple la condición definida, el área roja de la figura \@ref(fig:normal-3). Como la curva es simétrica, basta con calcular a un lado (el derecho usualmente) y multiplicar por 2.
+Tomando como base la sección \@ref(media-parametrica-1cola), específicamente el ejemplo \@ref(eq:ejemplo-media-1cola) ¿Por qué el valor-*p* se calcula de esa manera? Porque el valor-*p* es en el fondo al área bajo la curva de la probabilidad acumulada de la zona que cumple la condición definida, el área roja de la figura \@ref(fig:normal-doble-3). Como la curva es simétrica, basta con calcular a un lado (el derecho usualmente) y multiplicar por 2.
 
 
 ## Tests Paramétricos {#parametricos-3}
@@ -143,9 +143,9 @@ P_{\mu = \mu_0} (|\bar{X} - \mu_0| \geq k) = \alpha\\
 (\#eq:desarrollo1-media-1cola)
 \end{equation}
 
-Visualmente, se puede ver parte de la formulación en la figura \@ref(fig:normal-3).
+Visualmente, se puede ver parte de la formulación en la figura \@ref(fig:normal-doble-3).
 
-```{r normal-3, fig.cap = "Explicación visual de las áreas de rechazo (en rojo) y las áreas de aceptación (sector blanco bajo la curva) para una distribución normal", echo=FALSE, fig.width = 4.5, fig.asp = 0.7, fig.align = 'center'}
+```{r normal-doble-3, fig.cap = "Explicación visual de las áreas de rechazo (en rojo) y las áreas de aceptación (sector blanco bajo la curva) para una distribución normal", echo=FALSE, fig.width = 4.5, fig.asp = 0.7, fig.align = 'center'}
 library(latex2exp)
 opar <- par()$mar
 par(mar=c(3,1,1,1))
@@ -249,6 +249,27 @@ Bueno... casi normal. Si el experimento se repite con $n$ grande, como 1000 o 10
 
 
 #### Caso Normal y varianza conocida (dos colas)
+
+Muy similar a la figura \@ref(fig:normal-doble-3), pero si miramos la imagen, esta vez tendremos una sola cola, a la derecha o a la izquierda, dependiendo del tipo de test. En la figura \@ref(fig:normal-derecha-3) se ve representada la hipótesis $H_0: \mu \leq \mu_0, H_1:\mu \leq \mu_0$ y la zona de rechazo está a la derecha solamente ($H_1$).
+
+```{r normal-derecha-3, fig.cap = "Explicación visual del área de rechazo (en rojo) y el área de aceptación (sector blanco bajo la curva) para una distribución normal de una cola", echo=FALSE, fig.width = 4.5, fig.asp = 0.7, fig.align = 'center'}
+library(latex2exp)
+opar <- par()$mar
+par(mar=c(3,1,1,1))
+x <- seq(-4, 4, length=200)
+y <- dnorm(x)  # curve podria ser tb
+xp <- c(1.5)
+plot(x, y, xlim=c(-3, 3), type="l", xlab='', ylab='', xaxt="n", yaxt="n", bty='n', yaxs="i")
+axis(1, at=c(-6, -5, 0, xp[1], 6), labels=c(-6, -5, TeX('$\\bar{X}$'), TeX('$\\mu_0 + k$'), 6))
+polygon(c( x[x > xp[1]], min(x[x > xp[1]])), c(y[x > xp[1]], 0), col="red")
+arrows(xp[1]+.2, .05, xp[1]+1, .15, code = 2, lwd = 2, col = 'black')
+text(0, .15 + .02, TeX('$P(\\bar{X} < \\mu_0 + k)$'))
+text(xp[1] + 1, .15 + .02, TeX('$P(\\bar{X} \\geq \\mu_0 + k)$'))
+text(0, .02, TeX('$1 - \\alpha$'))
+text(xp[1] + .5, .02, TeX('$\\alpha$'), col='white', lwd=2)
+par(mar=opar)
+```
+
 
 
 #### Caso normal y varianza desconocida (dos colas)
