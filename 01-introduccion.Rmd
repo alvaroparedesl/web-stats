@@ -24,5 +24,7 @@ Antes de comenzar, es bueno definir algunos conceptos básicos para que hablemos
 - Estimación: resultado de aplicar el estimador a una muestra.
 - Significancia: (ver \@ref(thipotesis-3))
 - Evento:
+- $\sigma$: desviación estándar de la población ($\sigma^2$ corresponde a la varianza).
+- $S$: desviación estándar de la muestra ($S^2$ corresponde a la varianza).
 
 

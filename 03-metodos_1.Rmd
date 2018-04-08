@@ -68,8 +68,6 @@ Se hará una explicación más detallada del primer caso, y en lo siguientes só
 
 A continuación se puede apreciar la tabla \@ref(tab:resumen-media-normal) que muestra el resumen de la hipotésis, el estadístico y el cálculo del valor-*p*. Los detalles y explicaciones podrán ser vistos en las subsecciones que siguen. Nótese que el caso no normal con $\sigma$ conocida utiliza la misma formulación que el caso normal y $\sigma$ conocida, pero se aplica a $n$ grandes (capítulo \@ref(media-parametrica-1cola-unk)).
 
-
-
 ```{r resumen-media-normal, echo = FALSE, message = FALSE, warning=FALSE}
 # , fig.cap = 'A figure caption.'
 mdt <- matrix(c("$H_0: \\mu = \\mu_0, H_1: \\mu \\neq \\mu_0$", 
@@ -225,10 +223,12 @@ Z0 >= qnorm(1 - alfa/2)
 2*(1 - pnorm(Z0))
 ```
 
-Se cumple \@ref(eq:Z0-media-1cola), por lo tanto se rechaza la hipótesis $H_0$ y se acepta la alternativa. La función ```qnorm``` permite obtener el cuantil deseado de la distribución normal en base a la probabilidad deseada, mientras que ```pnorm``` entrega la función de distribución. El valor-*p*, siempre en concordancia con lo que arroja el estadístico, también llega a la misma conclusión, al ser menor que 0.05. Mayor información sobre el valor-*p* se puede ver en el apartado \@ref(valorp-3).
+Se cumple \@ref(eq:Z0-media-1cola), por lo tanto se rechaza la hipótesis $H_0$ y se acepta la alternativa. En el ejemplo anterior, la función ```qnorm``` permite obtener el cuantil deseado de la distribución normal en base a la probabilidad deseada, mientras que ```pnorm``` entrega la función de distribución. El valor-*p*, siempre en concordancia con lo que arroja el estadístico, también llega a la misma conclusión, al ser menor que 0.05. Mayor información sobre el valor-*p* se puede ver en el apartado \@ref(valorp-3).
 
 
 #### Caso normal y varianza desconocida (una cola)
+
+En este caso estamos frente a la t-student. El estadístico es practicamente el mismo, salvo algunos ajustes que veremos a continuación
 
 
 #### Caso no normal y varianza conocida (una cola) {#media-parametrica-1cola-unk}
@@ -270,6 +270,26 @@ text(xp[1] + .5, .02, TeX('$\\alpha$'), col='white', lwd=2)
 par(mar=opar)
 ```
 
+Para el caso opuesto:
+
+```{r normal-izquierda-3, fig.cap = "Explicación visual del área de rechazo (en rojo) y el área de aceptación (sector blanco bajo la curva) para una distribución normal de una cola (izquierda)", echo=FALSE, fig.width = 4.5, fig.asp = 0.7, fig.align = 'center'}
+library(latex2exp)
+opar <- par()$mar
+par(mar=c(3,1,1,1))
+x <- seq(-4, 4, length=200)
+y <- dnorm(x)  # curve podria ser tb
+xp <- c(-1.5)
+plot(x, y, xlim=c(-3, 3), type="l", xlab='', ylab='', xaxt="n", yaxt="n", bty='n', yaxs="i")
+axis(1, at=c(-6, xp[1], 0, 5, 6), labels=c(-6, TeX('$\\mu_0 - k$'), TeX('$\\bar{X}$'), 5, 6))
+polygon(c( x[x < xp[1]], max(x[x < xp[1]])), c(y[x < xp[1]], 0), col="red")
+arrows(xp[1]-.2, .05, xp[1]-1, .15, code = 2, lwd = 2, col = 'black')
+text(0, .15 + .02, TeX('$P(\\bar{X} > \\mu_0 - k)$'))
+text(xp[1] - 1, .15 + .02, TeX('$P(\\bar{X} \\leq \\mu_0 - k)$'))
+text(0, .02, TeX('$1 - \\alpha$'))
+text(xp[1] - .5, .02, TeX('$\\alpha$'), col='white', lwd=2)
+par(mar=opar)
+```
+
 
 
 #### Caso normal y varianza desconocida (dos colas)
@@ -281,7 +301,7 @@ par(mar=opar)
 
 ### Varianza {#varianza-parametrica-3}
 
-En todos los casos se asume que existe una distribución normal. Es importante resaltar que como en este caso se utiliza la distribución chi cuadrada ($\chi^2$) de características asimétricas.
+En todos los casos se asume que existe una distribución normal. Es importante resaltar que en este caso se utiliza la distribución chi cuadrada ($\chi^2$) de características asimétricas.
 
 Al igual que con el caso sobre las medias (sección \@ref(media-parametrica-3)), se presenta la tabla resumen \@ref(tab:resumen-varianza-normal) y luego en cada subsección se podrán encontrar más detalles.
 
@@ -290,18 +310,18 @@ Al igual que con el caso sobre las medias (sección \@ref(media-parametrica-3)),
 library(kableExtra)
 mdt <- matrix(c("$H_0: \\sigma = \\sigma_0, H_1: \\sigma \\neq \\sigma_0$", 
                 "$\\chi_0 = (n-1)\\frac{S^2}{\\sigma^2_0} \\ge \\chi^2_{n-1, 1 - \\alpha/2}$ $\\chi_0 = (n-1)\\frac{S^2}{\\sigma^2_0} \\le \\chi^2_{n-1, \\alpha/2}$", 
-                "fix $2 * (1 - \\Phi(Z_0))$", 
-                "fix 2*(1 - pnorm($Z_0$))",
+                "?", 
+                "?",
                 
                 "$H_0: \\sigma \\leq \\sigma_0, H_1: \\sigma \\gt \\sigma_0$", 
                 "$\\chi_0 = (n-1)\\frac{S^2}{\\sigma^2_0} \\ge \\chi^2_{n-1, 1 - \\alpha}$", 
-                "fix $1 - \\Phi(Z_0)$", 
-                "fix 1 - pnorm($Z_0$)",
+                "$1 - P(\\chi^2_{n-1} \\leq \\chi_0)$",
+                "1 - pchisq($\\chi_0$, n-1)",
                 
                 "$H_0: \\sigma \\geq \\sigma_0, H_1: \\sigma \\lt \\mu_0$", 
                 "$\\chi_0 = (n-1)\\frac{S^2}{\\sigma^2_0} \\le \\chi^2_{n-1, \\alpha}$", 
-                "fix $\\Phi(Z_0)$", 
-                "fix pnorm($Z_0$)"
+                "$P(\\chi^2_{n-1} \\leq \\chi_0)$", 
+                "pchisq($\\chi_0$, n-1)"
                 ),
               ncol=4, byrow=T,
               dimnames=list(c("Normal y $\\sigma$ desconocida",
@@ -324,6 +344,12 @@ Hay que considerar que el cálculo del valor-*p* en esta instancia es un poco m�
 ### Comparación de medias {#comparacion-medias-3}
 
 ## No paramétricos {#noparametricos-3}
+
+### Test de signos
+
+### Test de rangos signados
+
+
 
 Son aquellos casos en que no se asume que los datos siguen alguna distribución conocida y las inferencias se pueden realizar sobre otras características de la distribución, no solo la media y la varianza (la mediana por ejemplo). Al contrario que el caso paramétrico (capítulo \@ref(parametricos-3)).
 
