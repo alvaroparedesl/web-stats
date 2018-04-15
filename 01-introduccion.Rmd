@@ -28,3 +28,7 @@ Antes de comenzar, es bueno definir algunos conceptos básicos para que hablemos
 - $S$: desviación estándar de la muestra ($S^2$ corresponde a la varianza).
 
 
+## Enlaces the interés
+
+http://www.rossmanchance.com/
+
