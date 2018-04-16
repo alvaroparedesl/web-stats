@@ -65,3 +65,55 @@ Veamos un ejemplo de cada caso y como se llega a las formulas resumen de la tabl
 
 4. Combinación con reposición: Este no es muy similar a nada, y es un poco complejo de explicar. Es mejor ver primero la aplicación, que sería $\binom{n + r - 1}{r} = \frac{(n + r - 1)!}{r!((n + r - 1) - r)!} = \frac{(6 + 3 - 1)!}{3!((6 + 3 - 1) - 3)!} = \frac{8*7*6*5!}{3! 5!} = 56$. El término $r$ queda eliminado en el denominador, con lo que en el fondo queda $\frac{(n + r - 1)!}{r!(n - 1)!}$. Es de esperar que al ser con reposición, se obtenga un número superior a sin reposición, y obviamente, por debajo de al menos el caso de permutación con reposición.
 
+
+### Probabilidad condicional e independencia
+
+Cuando se quiere conocer la probabilidad de que se produzca un evento $A$ dado que ocurrió un evento $B$, hablamos de probabilidad condicional. Esto está expresado en la ecuación \@ref(eq:probabilidad-condicional).
+
+\begin{equation}
+P(A|B) = \frac{P(A \cap B)}{P(B)}
+(\#eq:probabilidad-condicional)
+\end{equation}
+
+Si la probabilidad de que ocurra $P(A|B)$ es la misma que $P(A)$, entonces el evento $A$ es independiente de $B$. Notar que la ecuación \@ref(eq:probabilidad-condicional) es equivalente a la expresion \@ref(eq:probabilidad-condicional-ext), gracias a las propiedades de simetría.
+
+\begin{equation}
+P(A \cap B) = P(A|B) * P(B) = P(B|A) * P(A)
+(\#eq:probabilidad-condicional-ext)
+\end{equation}
+
+Por otro lado, si $A$ es independiente de $B$ podemos resolver como se muestra en la ecuación \@ref(eq:eventos-independientes-desarrollo).
+
+\begin{equation}
+P(A|B) = \frac{P(B|A) * P(A)}{P(B)} \\
+= P(A|B) \frac{P(A)} {P(B)} \\
+= P(B) \frac{P(A)} {P(B)} \\
+= P(A)
+(\#eq:eventos-independientes-desarrollo)
+\end{equation}
+
+La expresión \@ref(eq:eventos-independientes-desarrollo) se derivda entonces, en la expresión \@ref(eq:eventos-independientes).
+
+\begin{equation}
+P(A|B) * P(B) = P(A \cap B) = P(A) * P(B)
+(\#eq:eventos-independientes)
+\end{equation}
+
+#### Probabilidad total
+
+\begin{equation}
+\sum_{i=1}^nP(A_i)P(B|A_i)
+(\#eq:probabilidad-total)
+\end{equation}
+
+#### Bayes
+
+\begin{equation}
+P(A_k|B) = \frac{P(A_k)P(B|A_k)}{\sum_{i=1}^nP(A_i)P(B|A_i)}, k=1,...,n
+(\#eq:teorema-bayes)
+\end{equation}
+
+### Variable aleatoria
+
+
+### Funciones de distribución
