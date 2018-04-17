@@ -26,8 +26,71 @@ La cualidad de sesgado o insesgado es relativa al estimador, no a la muestra.
 
 ## Teoría de conjuntos {#tconjuntos-2}
 
+* Contenido: $A \subset B$
+* Igualdad: $A = B \Leftrightarrow A \subset B y B \subset A$
+* Unión: $A \cup B$
+* Intersección: $A \cap B$
+* Complemento: $A^c$
 
-## Probabilidades en poblaciones finitas
+### Teoremas
+
+1. Conmutatividad: $A \cup B = B \cup A$ y $A \cap B = B \cap A$
+2. Asociatividad: $A \cup (B \cup C) = (A \cup B) \cup C$ y $A \cap (B \cap C) = (A \cap B) \cap C$
+3. Distributiva: $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$ y $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
+4. Complemento: $(A \cup B)^c = (A^c \cap B^c)$ y $(A \cap B)^c = (A^c \cup B^c)$
+
+
+## Teoría de probabilidad
+
+Debemos definir:
+
+1. Espacio muestral: conjunto de todos los resultados posibles ($\Omega$)
+2. Familia de eventos $\Im$ ($\sigma$-álgebra o *Borel field*): subconjunto de $\Omega$ a los cuales les asigno una probabilidad ($P$). Cobra importancia e interés, cuando $\Omega$ no es numerable o es infinito. En el fondo es una partición de $\Omega$ que puede contener la misma cantidad de elementos (partición fina, caso finito o numerable) o menos elementos (partición gruesa, para casos no numerables o infinitos).
+3. Probabilidad $P$: definición de función de probabilidad
+
+
+### Características de $\Im$
+
+Para que $\Im$ sea considerada una $\omega$-álgebra, debe tener las siguientes propiedades:
+
+1. $\emptyset \in \Im$
+2. Si $A \in \Im$, entonces $A^c \in \Im$
+3. Si $A_1, A_2, ... \in \Im 	\Rightarrow \bigcup_{i=1}^\infty A_i \in \Im$
+
+Cualquier cosa que cumpla estas propiedades, es una $\sigma$-álgebra. Una $\sigma$-álgebra contiene $2^n$ conjuntos, donde $n$ es la cantidad de elementos contenidos.
+
+
+### Características de una función de probabilidad $P$
+
+Definida como:
+$P: \Im \rightarrow \mathbb{R} \\$ 
+$A \rightarrow P(A)$
+
+Y dado un espacio muestral $\Omega$ y una $\Im$ asociada a dicho espacio muestral, $P$ es una probabilidad de función (con dominio en $\Im$) si cumple los siguientes 3 axiomas de probabilidad:
+
+1. $P(A) \ge 0, \forall A \in \Im$
+2. $P(\Omega) = 1$
+3. Si $A_1, A_2, ... \in \Im$ y son pares disjuntos, entonces $P(\bigcup_{i=1}^\infty A_i) = \sum_{i=1}^\infty P(A_i)$
+
+
+Si $P$ es una función de probabilidad, con $A \in \Im$, entonces se cumple el siguiente teorema:
+
+1. $P(\emptyset) = 0$
+2. $P(A) \leq 1$
+3. $P(A^c) = 1- P(A)$
+
+
+Si $P$ es una función de probabilidad, con $A,B \in \Im$, entonces se cumple el siguiente teorema:
+
+1. $P(B \cap A^c) = P(B) - P(A \cap B)$
+2. $P(A \cup B) = P(A) + P(B) - P(A \cap B)$
+3. Si $A \subset B \Rightarrow P(A) \leq P(B)$
+
+
+En el segundo caso, cuando los eventos son disjuntos, $A \cap B = \emptyset$
+
+
+### Probabilidades en poblaciones finitas
 
 Y en donde se pueden contar los elementos; también puede ser el caso de poblaciones ¿infinitas?, pero elementos contables (como los números enteros).
 
