@@ -27,7 +27,7 @@ La cualidad de sesgado o insesgado es relativa al estimador, no a la muestra.
 ## Teoría de conjuntos {#tconjuntos-2}
 
 * Contenido: $A \subset B$
-* Igualdad: $A = B \Leftrightarrow A \subset B y B \subset A$
+* Igualdad: $A = B \Leftrightarrow A \subset B$ y $B \subset A$
 * Unión: $A \cup B$
 * Intersección: $A \cap B$
 * Complemento: $A^c$
@@ -60,7 +60,7 @@ Para que $\Im$ sea considerada una $\omega$-álgebra, debe tener las siguientes 
 Cualquier cosa que cumpla estas propiedades, es una $\sigma$-álgebra. Una $\sigma$-álgebra contiene $2^n$ conjuntos, donde $n$ es la cantidad de elementos contenidos.
 
 
-### Características de una función de probabilidad $P$
+### Características de una función de probabilidad $P$ ($\Omega, \Im, P$)
 
 Definida como:
 $P: \Im \rightarrow \mathbb{R} \\$ 
@@ -86,16 +86,12 @@ Si $P$ es una función de probabilidad, con $A,B \in \Im$, entonces se cumple el
 2. $P(A \cup B) = P(A) + P(B) - P(A \cap B)$
 3. Si $A \subset B \Rightarrow P(A) \leq P(B)$
 
-
 En el segundo caso, cuando los eventos son disjuntos, $A \cap B = \emptyset$
 
 
-### Probabilidades en poblaciones finitas
+### Probabilidades en poblaciones finitas: permutaciones y combinaciones
 
 Y en donde se pueden contar los elementos; también puede ser el caso de poblaciones ¿infinitas?, pero elementos contables (como los números enteros).
-
-
-### Permutaciones y combinaciones
 
 Tenemos:
 
@@ -131,36 +127,58 @@ Veamos un ejemplo de cada caso y como se llega a las formulas resumen de la tabl
 
 ### Probabilidad condicional e independencia
 
-Cuando se quiere conocer la probabilidad de que se produzca un evento $A$ dado que ocurrió un evento $B$, hablamos de probabilidad condicional. Esto está expresado en la ecuación \@ref(eq:probabilidad-condicional).
+Cuando se quiere conocer la probabilidad de que se produzca un evento $A$ dado que ocurrió un evento $B$, hablamos de probabilidad condicional. Esto está expresado en la ecuación \@ref(eq:probabilidad-condicional), siempre que se cumpla $P(B) > 0$.
 
 \begin{equation}
 P(A|B) = \frac{P(A \cap B)}{P(B)}
 (\#eq:probabilidad-condicional)
 \end{equation}
 
-Si la probabilidad de que ocurra $P(A|B)$ es la misma que $P(A)$, entonces el evento $A$ es independiente de $B$. Notar que la ecuación \@ref(eq:probabilidad-condicional) es equivalente a la expresion \@ref(eq:probabilidad-condicional-ext), gracias a las propiedades de simetría.
+Notar que la ecuación \@ref(eq:probabilidad-condicional) es equivalente a la expresion \@ref(eq:probabilidad-condicional-ext), gracias a las propiedades de simetría.
 
 \begin{equation}
 P(A \cap B) = P(A|B) * P(B) = P(B|A) * P(A)
 (\#eq:probabilidad-condicional-ext)
 \end{equation}
 
-Por otro lado, si $A$ es independiente de $B$ podemos resolver como se muestra en la ecuación \@ref(eq:eventos-independientes-desarrollo).
+Y basados en la ecuación \@ref(eq:probabilidad-condicional-ext), podemos obtener también:
+
+\begin{equation}
+P(A|B) = P(B|A) \frac{P(A)}{P(B)}
+(\#eq:probabilidad-condicional-ext2)
+\end{equation}
+
+Si la probabilidad de que ocurra $P(A|B)$ es la misma que $P(A)$, entonces el evento $A$ es independiente de $B$ y podemos resolver como se muestra en la ecuación \@ref(eq:eventos-independientes-desarrollo).
 
 \begin{equation}
 P(A|B) = \frac{P(B|A) * P(A)}{P(B)} \\
-= P(A|B) \frac{P(A)} {P(B)} \\
+= P(B|A) \frac{P(A)} {P(B)} \\
 = P(B) \frac{P(A)} {P(B)} \\
 = P(A)
 (\#eq:eventos-independientes-desarrollo)
 \end{equation}
 
-La expresión \@ref(eq:eventos-independientes-desarrollo) se derivda entonces, en la expresión \@ref(eq:eventos-independientes).
+La expresión \@ref(eq:eventos-independientes-desarrollo) se deriva entonces, en la expresión \@ref(eq:eventos-independientes).
 
 \begin{equation}
 P(A|B) * P(B) = P(A \cap B) = P(A) * P(B)
 (\#eq:eventos-independientes)
 \end{equation}
+
+Importante notar, que los eventos disjuntos son completamente distintos a la independencia. La independencia corresponde a la función de probabilidad utilizada $P$, mientras ser disjuntos es una propiedad de los eventos de $\Im$. Así, para la misma $\Im$, pueden existir diferentes funciones de probabilidad, en donde algunas de esas functiones sean independientes para $P(A)$ y $P(B)$, mientras que en otro modelo no lo sean.
+
+Por la misma razón, la única forma en que $P(A)$ y $P(B)$ sean disjuntos e independientes, es que alguno de los dos sea 0 dado que es la única forma de cumplir con $P(A) + P(B) = P(A) * P(B)$.
+
+Si $A$ y $B$ son eventos independientes, entonces se cumple el siguiente teorema, que indica que también son independientes:
+
+1. $A$ y $B^c$
+2. $A^c$ y $B$
+3. $A^c$ y $B^c$
+
+Los eventos $A_1, ..., A_n$ son independientes dos a dos si se verifica que $P(A_i \cap B_j) = P(A_i) * P(B_j), \forall \text{ } i \neq j$ con $i,j = 1, ..., n$. 
+
+Los eventos $A_1, ..., A_n$ son mutuamente independientes si son independientes entre sí, en cualquier combinación y número (dos a dos, dos a tres, tres a tres, etc).
+
 
 #### Probabilidad total
 
@@ -178,5 +196,30 @@ P(A_k|B) = \frac{P(A_k)P(B|A_k)}{\sum_{i=1}^nP(A_i)P(B|A_i)}, k=1,...,n
 
 ### Variable aleatoria
 
+Es una función medible $X$ que va de $\Omega$ a $\mathbb{R}$. $X$ induce una partición en $\Omega$ y queremos que $X$ esté en $\Im$; por otro lado $X$ debe ser igual o más gruesa que $\Im$, pero no menor, o de lo contrario no habrá una probabilidad $P$, dado que $P$ está definida sobre los eventos y al estar los eventos en $\Im$, una partición menor implica que el evento no existe en $\Im$.
 
-### Funciones de distribución
+Una variable aleatoria es una función, pero no cualquier función es una variable aleatoria. En dicha función, lo que va cambiando es el recorrido, pero no el dominio (que está en $\Omega$)
+
+Definida como:
+$X(x): \Omega \rightarrow \mathbb{R} \\$ 
+$\Im \leftarrow X^{-1}(x)$
+
+Y formalmente está definida en la ecuación \@ref(eq:variable-aleatoria) y también en la ecuación \@ref(eq:variable-aleatoria2). Ambas son equivalentes.
+
+\begin{equation}
+\{\omega \in \Omega:X(\omega) \leq x\} \in \Im, \forall \text{ } x \in \mathbb{R}
+(\#eq:variable-aleatoria)
+\end{equation}
+
+\begin{equation}
+\{\omega \in \Omega:X(\omega) \in B\} \in \Im, \text{donde } B \text{ es cualquier conjunto Boreliano}
+(\#eq:variable-aleatoria2)
+\end{equation}
+
+Esto me permite calcular $P$ para cualquier intervalito que se quiera definir.
+
+#### Distribución de probabilidad
+
+#### Variable aleatoria discreta
+
+#### Variable aleatoria continua
