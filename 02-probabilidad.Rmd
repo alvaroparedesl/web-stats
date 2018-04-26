@@ -51,7 +51,7 @@ Debemos definir:
 
 ### Características de $\Im$
 
-Para que $\Im$ sea considerada una $\omega$-álgebra, debe tener las siguientes propiedades:
+Para que $\Im$ sea considerada una $\sigma$-álgebra, debe tener las siguientes propiedades:
 
 1. $\emptyset \in \Im$
 2. Si $A \in \Im$, entonces $A^c \in \Im$
@@ -91,11 +91,9 @@ En el segundo caso, cuando los eventos son disjuntos, $A \cap B = \emptyset$
 
 ### Probabilidades en poblaciones finitas: permutaciones y combinaciones
 
-Y en donde se pueden contar los elementos; también puede ser el caso de poblaciones ¿infinitas?, pero elementos contables (como los números enteros).
+En el caso finito y/o contable (como los números enteros), tenemos:
 
-Tenemos:
-
-* Permutaciones: Arreglo ordenado de objetos, con o sin reposición/reemplazo. Es decir, el orden si importa; elegir entre dos letras $A$ y $B$, son elementos distintos $AB$ y $BA$.
+* Permutaciones: Arreglo ordenado de objetos, con o sin reposición/reemplazo. Es decir, el orden sí importa; elegir entre dos letras $A$ y $B$, son elementos distintos $AB$ y $BA$.
 * Combinaciones: Arreglo no ordenado de objetos, con o sin reposición/reemplazo. El orden no importa; elegir entre dos letras $A$ y $B$, son el mismo elemento $AB$ y $BA$.
 
 En el caso equipobrable (cada evento tiene probabilida de ocurrencia $1/n$), se tiene lo siguiente, siendo $r$ el tamaño de la muestra y $n$ un conjunto dado:
@@ -127,7 +125,7 @@ Veamos un ejemplo de cada caso y como se llega a las formulas resumen de la tabl
 
 ### Probabilidad condicional e independencia
 
-Cuando se quiere conocer la probabilidad de que se produzca un evento $A$ dado que ocurrió un evento $B$, hablamos de probabilidad condicional. Esto está expresado en la ecuación \@ref(eq:probabilidad-condicional), siempre que se cumpla $P(B) > 0$.
+Cuando se quiere conocer la probabilidad de que se produzca un evento $A$, dado que ocurrió un evento $B$, hablamos de probabilidad condicional. Esto está expresado en la ecuación \@ref(eq:probabilidad-condicional), siempre que se cumpla $P(B) > 0$.
 
 \begin{equation}
 P(A|B) = \frac{P(A \cap B)}{P(B)}
@@ -150,13 +148,13 @@ P(A|B) = P(B|A) \frac{P(A)}{P(B)}
 
 Si la probabilidad de que ocurra $P(A|B)$ es la misma que $P(A)$, entonces el evento $A$ es independiente de $B$ y podemos resolver como se muestra en la ecuación \@ref(eq:eventos-independientes-desarrollo).
 
-\begin{equation}
-P(A|B) = \frac{P(B|A) * P(A)}{P(B)} \\
-= P(B|A) \frac{P(A)} {P(B)} \\
-= P(B) \frac{P(A)} {P(B)} \\
-= P(A)
+\begin{align}
+P(A|B) &= \frac{P(B|A) * P(A)}{P(B)} \\
+       &= P(B|A) \frac{P(A)} {P(B)} \\
+       &= P(B) \frac{P(A)} {P(B)} \\
+       &= P(A)
 (\#eq:eventos-independientes-desarrollo)
-\end{equation}
+\end{align}
 
 La expresión \@ref(eq:eventos-independientes-desarrollo) se deriva entonces, en la expresión \@ref(eq:eventos-independientes).
 
@@ -165,7 +163,7 @@ P(A|B) * P(B) = P(A \cap B) = P(A) * P(B)
 (\#eq:eventos-independientes)
 \end{equation}
 
-Importante notar, que los eventos disjuntos son completamente distintos a la independencia. La independencia corresponde a la función de probabilidad utilizada $P$, mientras ser disjuntos es una propiedad de los eventos de $\Im$. Así, para la misma $\Im$, pueden existir diferentes funciones de probabilidad, en donde algunas de esas functiones sean independientes para $P(A)$ y $P(B)$, mientras que en otro modelo no lo sean.
+Importante notar, que los eventos disjuntos son completamente distintos a la independencia. La independencia corresponde a la función de probabilidad utilizada $P$, mientras ser disjuntos es una propiedad de los eventos de $\Im$. Así, para la misma $\Im$, pueden existir diferentes funciones de probabilidad, en donde algunas de esas functiones sean independientes para $P(A)$ y $P(B)$, mientras que en otro modelo no lo sean (por ejemplo, el evento de comprar o no un yogurt la probabilidad es dependiente si se utiliza sobre el sabor, pero independiente sobre el código de barras).
 
 Por la misma razón, la única forma en que $P(A)$ y $P(B)$ sean disjuntos e independientes, es que alguno de los dos sea 0 dado que es la única forma de cumplir con $P(A) + P(B) = P(A) * P(B)$.
 
@@ -198,7 +196,7 @@ P(A_k|B) = \frac{P(A_k)P(B|A_k)}{\sum_{i=1}^nP(A_i)P(B|A_i)}, k=1,...,n
 
 Es una función medible $X$ que va de $\Omega$ a $\mathbb{R}$. $X$ induce una partición en $\Omega$ y queremos que $X$ esté en $\Im$; por otro lado $X$ debe ser igual o más gruesa que $\Im$, pero no menor, o de lo contrario no habrá una probabilidad $P$, dado que $P$ está definida sobre los eventos y al estar los eventos en $\Im$, una partición menor implica que el evento no existe en $\Im$.
 
-Una variable aleatoria es una función, pero no cualquier función es una variable aleatoria. En dicha función, lo que va cambiando es el recorrido, pero no el dominio (que está en $\Omega$)
+Una variable aleatoria es una función, pero no cualquier función es una variable aleatoria. En dicha función, lo que va cambiando es el recorrido, pero no el dominio (que es $\Omega$).
 
 Definida como:
 $X(x): \Omega \rightarrow \mathbb{R} \\$ 
@@ -216,10 +214,41 @@ Y formalmente está definida en la ecuación \@ref(eq:variable-aleatoria) y tamb
 (\#eq:variable-aleatoria2)
 \end{equation}
 
-Esto me permite calcular $P$ para cualquier intervalito que se quiera definir.
+Esto me permite calcular $P$ para cualquier intervalo que se quiera.
 
-#### Distribución de probabilidad
+#### Función de distribución de probabilidad
+
+Dado un espacio de probabilidad $(\Omega, \Im, P)$, se considera una **función de distribución** de la variable aleatoria $X$ ($F_X(x)$) para todos los valores $x$ reales, mediante la ecuación \@ref(eq:funcion-distribucion).
+
+\begin{equation}
+F_X(x) = P_X(X \leq x) \equiv P(\{\omega \in \Omega: X(\omega) \leq x \}) 
+(\#eq:funcion-distribucion)
+\end{equation}
+
+Por otro lado, si se considera para el mismo espacio de probabilidad $(\Omega, \Im, P)$ la variable aleatoria $X = X(\omega) \in \Omega$, entonces esa variable aleatoria es **función de probabilidad** si cumple la ecuación \@ref(eq:funcion-probabilidad), para todos los conjuntos Borelianos $B$.
+
+\begin{equation}
+P_X(B) = P_X(X \in B) = P(\{\omega : X(\omega) \in B\})
+(\#eq:funcion-probabilidad)
+\end{equation}
+
+Finalmente, una **distribución de probabilidad** de una variable aleatoria $X$ es la función de distribución $F_X(x)$ (ecuación \@ref(eq:funcion-distribucion)) o la función de probabilidad $P_X(B)$ (ecuación \@ref(eq:funcion-probabilidad)).
+
+Algunas propiedades importantes:
+
+1. $\forall \in \mathbb{R} \Rightarrow 0 \leq F_X(x) \leq 1$
+2. $a, b \in \mathbb{R} \Rightarrow P_X(a < X \leq b) = F_X(b) - F_X(a)$
+3. $\forall \text{ } a, b \in \mathbb{R} \Rightarrow F_X(a) \leq F_X(b)$ (no decreciente en la recta real)
+4. $\lim_{x \rightarrow + \infty} \Rightarrow F_X(x) = 1$ y $\lim_{x \rightarrow - \infty} \Rightarrow F_X(x) = 0$
+5. $\forall \text{ } x_0, \lim_{x \rightarrow x_0^+} = F_X(x_0)$ (continuidad por la ¿derecha?)
+6. $F_X(x)$ tiene una cantidad finita o numerable de puntos discontinuos
+
 
 #### Variable aleatoria discreta
+
+Una variable aleatoria tiene distribución discreta si existe un conjunto $B$ finito o numerable de la recta real, tal que $P(X \in B) = 1$
+
+Una **función de masa de probabilidad** está dada por $P_X(X=x)$ para todo $x$. La variable aleatoria tiene una distribución degenerada si existe un número $c$ y $P(X=c) = 1$.
+
 
 #### Variable aleatoria continua

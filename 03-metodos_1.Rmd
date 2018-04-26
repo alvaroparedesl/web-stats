@@ -133,13 +133,13 @@ Primero veamos visualmente que es lo que se tratará de hacer. Teniendo una medi
 
 Por lo tanto, el valor $k$ determina las probabilidades $P$ de error. En estricto rigor, $k$ es un número que representa unidades de alguna variable definida. Si se fija:
 
-\begin{equation}
-k = \alpha = P(\text{rechazar } H_0 \text{ cuando } H_1 \text{ es correcto}) \\
-P_{\mu = \mu_0} (|\bar{X} - \mu_0| \geq k) = \alpha\\
-1 - P_{\mu = \mu_0} (\mu_0 - k < \bar{X} < \mu_0 + k) = \alpha  \\
-1 - P_{\mu = \mu_0} \left (\frac{-k}{\sigma/\sqrt{n}} < \frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}} < \frac{k}{\sigma/\sqrt{n}} \right ) = \alpha
+\begin{align}
+P(\text{rechazar } H_0 \text{ cuando } H_1 \text{ es correcto}) = k &= \alpha \\
+P_{\mu = \mu_0} (|\bar{X} - \mu_0| \geq k) &= \alpha\\
+1 - P_{\mu = \mu_0} (\mu_0 - k < \bar{X} < \mu_0 + k) &= \alpha  \\
+1 - P_{\mu = \mu_0} \left (\frac{-k}{\sigma/\sqrt{n}} < \frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}} < \frac{k}{\sigma/\sqrt{n}} \right ) &= \alpha
 (\#eq:desarrollo1-media-1cola)
-\end{equation}
+\end{align}
 
 Visualmente, se puede ver parte de la formulación en la figura \@ref(fig:normal-doble-3).
 
