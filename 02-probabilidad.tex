@@ -1,0 +1,598 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{natbib}
+\bibliographystyle{plainnat}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{}
+  \pretitle{\vspace{\droptitle}}
+  \posttitle{}
+  \author{}
+  \preauthor{}\postauthor{}
+  \date{}
+  \predate{}\postdate{}
+
+\usepackage{booktabs}
+
+\begin{document}
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\section{Probabilidad}\label{prob-2}
+
+Intuitivas en parte, no tanto en varias. Todo es posible, pero a la vez
+imposible. Sí, de eso se tratan las probabilidades.
+
+La probabilidad no se puede dar por definición, se deriva de axiomas
+(que veremos en \ref{tconjuntos-2}) en base a una función de
+probabilidad. Cualquier cosa que cumpla con los estos 3 axiomas, es una
+probabilidad. La definición filosófica, la dejamos para otro momento,
+por ahora nos quedaremos con la definición matemática.
+
+\subsection{Conceptos importantes}\label{cimportantes-2}
+
+\subsubsection{Muestras significativas}\label{msignificativas-2}
+
+Tal y como nos referimos en \ref{cbasicos-1}, una muestra no puede ser
+calificada de \emph{``significativa''}. Como la mayoría de las veces
+desconocemos las características que nos interesan de la población, es
+imposible saber si dicha muestra es o no es significativa. Por lo tanto
+el concepto es absurdo. Lo que sí es necesario de una muestra, es que su
+origen debe ser probabilístico, lo que se traduce en que debe ser
+posible asignarle una probabilidad de ser seleccionada (probabilidad de
+obtener dicha muestra).
+
+¿De qué tamaño debe ser la muestra? Depende de la variabilidad de la
+población. Pero diantres, si la población es desconocida, ¿cómo sabemos
+todas esas cosas? Bueno, bienvenido a los supuestos y simplificaciones,
+que de esos tendremos por montón. Lo bueno, es que seremos capaces de
+cuantificarlos.
+
+\subsubsection{Sesgo}\label{sesgo}
+
+La cualidad de sesgado o insesgado es relativa al estimador, no a la
+muestra.
+
+\subsection{Teoría de conjuntos}\label{tconjuntos-2}
+
+\begin{itemize}
+\tightlist
+\item
+  Contenido: \(A \subset B\)
+\item
+  Igualdad: \(A = B \Leftrightarrow A \subset B\) y \(B \subset A\)
+\item
+  Unión: \(A \cup B\)
+\item
+  Intersección: \(A \cap B\)
+\item
+  Complemento: \(A^c\)
+\end{itemize}
+
+\subsubsection{Teoremas}\label{teoremas}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Conmutatividad: \(A \cup B = B \cup A\) y \(A \cap B = B \cap A\)
+\item
+  Asociatividad: \(A \cup (B \cup C) = (A \cup B) \cup C\) y
+  \(A \cap (B \cap C) = (A \cap B) \cap C\)
+\item
+  Distributiva: \(A \cup (B \cap C) = (A \cup B) \cap (A \cup C)\) y
+  \(A \cap (B \cup C) = (A \cap B) \cup (A \cap C)\)
+\item
+  Complemento: \((A \cup B)^c = (A^c \cap B^c)\) y
+  \((A \cap B)^c = (A^c \cup B^c)\)
+\end{enumerate}
+
+\subsection{Teoría de probabilidad}\label{teoria-de-probabilidad}
+
+Debemos definir:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Espacio muestral: conjunto de todos los resultados posibles
+  (\(\Omega\))
+\item
+  Familia de eventos \(\Im\) (\(\sigma\)-álgebra o \emph{Borel field}):
+  subconjunto de \(\Omega\) a los cuales les asigno una probabilidad
+  (\(P\)). Cobra importancia e interés, cuando \(\Omega\) no es
+  numerable o es infinito. En el fondo es una partición de \(\Omega\)
+  que puede contener la misma cantidad de elementos (partición fina,
+  caso finito o numerable) o menos elementos (partición gruesa, para
+  casos no numerables o infinitos).
+\item
+  Probabilidad \(P\): definición de función de probabilidad
+\end{enumerate}
+
+\subsubsection{\texorpdfstring{Características de
+\(\Im\)}{Características de \textbackslash{}Im}}\label{caracteristicas-de-im}
+
+Para que \(\Im\) sea considerada una \(\sigma\)-álgebra, debe tener las
+siguientes propiedades:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(\emptyset \in \Im\)
+\item
+  Si \(A \in \Im\), entonces \(A^c \in \Im\)
+\item
+  Si
+  \(A_1, A_2, ... \in \Im \Rightarrow \bigcup_{i=1}^\infty A_i \in \Im\)
+\end{enumerate}
+
+Cualquier cosa que cumpla estas propiedades, es una \(\sigma\)-álgebra.
+Una \(\sigma\)-álgebra contiene \(2^n\) conjuntos, donde \(n\) es la
+cantidad de elementos contenidos.
+
+\subsubsection{\texorpdfstring{Características de una función de
+probabilidad \(P\)
+(\(\Omega, \Im, P\))}{Características de una función de probabilidad P (\textbackslash{}Omega, \textbackslash{}Im, P)}}\label{caracteristicas-de-una-funcion-de-probabilidad-p-omega-im-p}
+
+Definida como: \(P: \Im \rightarrow \mathbb{R} \\\)
+\(A \rightarrow P(A)\)
+
+Y dado un espacio muestral \(\Omega\) y una \(\Im\) asociada a dicho
+espacio muestral, \(P\) es una probabilidad de función (con dominio en
+\(\Im\)) si cumple los siguientes 3 axiomas de probabilidad:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(P(A) \ge 0, \forall A \in \Im\)
+\item
+  \(P(\Omega) = 1\)
+\item
+  Si \(A_1, A_2, ... \in \Im\) y son pares disjuntos, entonces
+  \(P(\bigcup_{i=1}^\infty A_i) = \sum_{i=1}^\infty P(A_i)\)
+\end{enumerate}
+
+Si \(P\) es una función de probabilidad, con \(A \in \Im\), entonces se
+cumple el siguiente teorema:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(P(\emptyset) = 0\)
+\item
+  \(P(A) \leq 1\)
+\item
+  \(P(A^c) = 1- P(A)\)
+\end{enumerate}
+
+Si \(P\) es una función de probabilidad, con \(A,B \in \Im\), entonces
+se cumple el siguiente teorema:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(P(B \cap A^c) = P(B) - P(A \cap B)\)
+\item
+  \(P(A \cup B) = P(A) + P(B) - P(A \cap B)\)
+\item
+  Si \(A \subset B \Rightarrow P(A) \leq P(B)\)
+\end{enumerate}
+
+En el segundo caso, cuando los eventos son disjuntos,
+\(A \cap B = \emptyset\)
+
+\subsubsection{Probabilidades en poblaciones finitas: permutaciones y
+combinaciones}\label{probabilidades-en-poblaciones-finitas-permutaciones-y-combinaciones}
+
+En el caso finito y/o contable (como los números enteros), tenemos:
+
+\begin{itemize}
+\tightlist
+\item
+  Permutaciones: Arreglo ordenado de objetos, con o sin
+  reposición/reemplazo. Es decir, el orden sí importa; elegir entre dos
+  letras \(A\) y \(B\), son elementos distintos \(AB\) y \(BA\).
+\item
+  Combinaciones: Arreglo no ordenado de objetos, con o sin
+  reposición/reemplazo. El orden no importa; elegir entre dos letras
+  \(A\) y \(B\), son el mismo elemento \(AB\) y \(BA\).
+\end{itemize}
+
+En el caso equipobrable (cada evento tiene probabilida de ocurrencia
+\(1/n\)), se tiene lo siguiente, siendo \(r\) el tamaño de la muestra y
+\(n\) un conjunto dado:
+
+\label{tab:permutaciones-combinaciones-equi-2}Cuadro resumen para contar
+eventos ordenados o no ordenados, con o sin reposición.
+
+Con reemplazo
+
+Sin reemplazo
+
+Ordenado (Permutaciones)
+
+\(n^r\)
+
+\(\frac{n!}{(n-r)!}\)
+
+No ordenado (Combinaciones)
+
+\(\frac{(n + r - 1)!}{r!(n-r)!} = \binom{n + r - 1}{r}\)
+
+\(\frac{n!}{r!(n-r)!} = \binom{n}{r}\)
+
+Como se puede apreciar en la tabla
+\ref{tab:permutaciones-combinaciones-equi-2}, las combinaciones tienen
+una notación especial denominada por \(\binom{}{}\), que es una
+abreviatura para dicha formulación. Si pensamos las cuatro expresiones
+que aparecen, podemos deducir que ante un mismo evento, las
+permutaciones (donde el orden importa) entregarán un número mayor de
+eventos posibles, con respecto a las combinaciones. Por otro lado,
+cuando hay reposición, el número de eventos que se pueden generar
+también es superior a cuando no hay reposición. Son ideas un poco obvias
+e intuitivas, pero que vale la pena resaltar.
+
+Veamos un ejemplo de cada caso y como se llega a las formulas resumen de
+la tabla \ref{tab:permutaciones-combinaciones-equi-2}, partiendo de la
+pregunta:
+
+\emph{Si tengo 6 bolas de colores ¿de cuántas maneras puedo tomar 3
+bolas?}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Permutación con reposición: Si antes de tomar la siguiente bola,
+  devuelvo la que saqué previamente. La primera vez, puedo sacar 6
+  bolas, la segunda vez también puedo sacar 6 bolas pues he repuesto la
+  que saqué anteriormente y la tercera vez, también puedo tomar 6 bolas.
+  Esto es equivalente a \(6 * 6 * 6 = 6^3 = 216\). Es decir, puedo
+  hacerlo de 216 formas posibles.
+\item
+  Permutación sin reposición: Si repito el ejercicio el anterior, sin
+  devolver las bolas que voy sacando, obtengo el resultado de
+  multiplicar \(6 * 5 * 4 = 120\). Esta operación, la podemos anotar
+  como
+  \(\frac{n!}{(n-r)!} = \frac{12!}{(12-3)!} = \frac{6!}{3!} = \frac{6*5*4*3!}{3!}\).
+  Cancelando \(3!\), obtenemos la multiplicación deseada. Notar que de
+  forma intuitiva, no podemos obtener un resultado mayor al experimento
+  con reposición, pues cada vez vamos teniendo menos opciones.
+\item
+  Combinación sin reposición: Similar al de permutación con reposición,
+  pero ahora hay que descontar las veces en que la elección tenía los
+  mismos elemntos, pero ordenados de forma diferente. Esto sería
+  \(\binom{n}{r} = \frac{n!}{r!(n-r)!} = \frac{6!}{3!(6-3)!} = \frac{6*5*4}{3!} = 20\).
+  En este caso, el \(3!\) está contando de cuantas maneras se pueden
+  elegir esas 3 bolas ordenadamente sin reposición y como está en el
+  denominador, estamos descontando dichas combinaciones del espacio de
+  solución. Nuevamente es bueno notar que el resultado esperado, también
+  es un número menor al de una permutación sin reposición (y en
+  realidad, debiera ser siempre el menor de los cuatro casos), pues el
+  orden esta vez no nos interesa, y con ello caen automáticamente el
+  número de casos.
+\item
+  Combinación con reposición: Este no es muy similar a nada, y es un
+  poco complejo de explicar. Es mejor ver primero la aplicación, que
+  sería
+  \(\binom{n + r - 1}{r} = \frac{(n + r - 1)!}{r!((n + r - 1) - r)!} = \frac{(6 + 3 - 1)!}{3!((6 + 3 - 1) - 3)!} = \frac{8*7*6*5!}{3! 5!} = 56\).
+  El término \(r\) queda eliminado en el denominador, con lo que en el
+  fondo queda \(\frac{(n + r - 1)!}{r!(n - 1)!}\). Es de esperar que al
+  ser con reposición, se obtenga un número superior a sin reposición, y
+  obviamente, por debajo de al menos el caso de permutación con
+  reposición.
+\end{enumerate}
+
+\subsubsection{Probabilidad condicional e
+independencia}\label{probabilidad-condicional-e-independencia}
+
+Cuando se quiere conocer la probabilidad de que se produzca un evento
+\(A\), dado que ocurrió un evento \(B\), hablamos de probabilidad
+condicional. Esto está expresado en la ecuación
+\eqref{eq:probabilidad-condicional}, siempre que se cumpla \(P(B) > 0\).
+
+\begin{equation}
+P(A|B) = \frac{P(A \cap B)}{P(B)}
+\label{eq:probabilidad-condicional}
+\end{equation}
+
+Notar que la ecuación \eqref{eq:probabilidad-condicional} es equivalente a
+la expresion \eqref{eq:probabilidad-condicional-ext}, gracias a las
+propiedades de simetría.
+
+\begin{equation}
+P(A \cap B) = P(A|B) * P(B) = P(B|A) * P(A)
+\label{eq:probabilidad-condicional-ext}
+\end{equation}
+
+Y basados en la ecuación \eqref{eq:probabilidad-condicional-ext}, podemos
+obtener también:
+
+\begin{equation}
+P(A|B) = P(B|A) \frac{P(A)}{P(B)}
+\label{eq:probabilidad-condicional-ext2}
+\end{equation}
+
+Si la probabilidad de que ocurra \(P(A|B)\) es la misma que \(P(A)\),
+entonces el evento \(A\) es independiente de \(B\) y podemos resolver
+como se muestra en la ecuación
+\eqref{eq:eventos-independientes-desarrollo}.
+
+\begin{align}
+P(A|B) &= \frac{P(B|A) * P(A)}{P(B)} \\
+       &= P(B|A) \frac{P(A)} {P(B)} \\
+       &= P(B) \frac{P(A)} {P(B)} \\
+       &= P(A)
+\label{eq:eventos-independientes-desarrollo}
+\end{align}
+
+La expresión \eqref{eq:eventos-independientes-desarrollo} se deriva
+entonces, en la expresión \eqref{eq:eventos-independientes}.
+
+\begin{equation}
+P(A|B) * P(B) = P(A \cap B) = P(A) * P(B)
+\label{eq:eventos-independientes}
+\end{equation}
+
+Importante notar, que los eventos disjuntos son completamente distintos
+a la independencia. La independencia corresponde a la función de
+probabilidad utilizada \(P\), mientras ser disjuntos es una propiedad de
+los eventos de \(\Im\). Así, para la misma \(\Im\), pueden existir
+diferentes funciones de probabilidad, en donde algunas de esas
+functiones sean independientes para \(P(A)\) y \(P(B)\), mientras que en
+otro modelo no lo sean (por ejemplo, el evento de comprar o no un yogurt
+la probabilidad es dependiente si se utiliza sobre el sabor, pero
+independiente sobre el código de barras).
+
+Por la misma razón, la única forma en que \(P(A)\) y \(P(B)\) sean
+disjuntos e independientes, es que alguno de los dos sea 0 dado que es
+la única forma de cumplir con \(P(A) + P(B) = P(A) * P(B)\).
+
+Si \(A\) y \(B\) son eventos independientes, entonces se cumple el
+siguiente teorema, que indica que también son independientes:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(A\) y \(B^c\)
+\item
+  \(A^c\) y \(B\)
+\item
+  \(A^c\) y \(B^c\)
+\end{enumerate}
+
+Los eventos \(A_1, ..., A_n\) son independientes dos a dos si se
+verifica que
+\(P(A_i \cap B_j) = P(A_i) * P(B_j), \forall \text{ } i \neq j\) con
+\(i,j = 1, ..., n\).
+
+Los eventos \(A_1, ..., A_n\) son mutuamente independientes si son
+independientes entre sí, en cualquier combinación y número (dos a dos,
+dos a tres, tres a tres, etc).
+
+\paragraph{Probabilidad total}\label{probabilidad-total}
+
+\begin{equation}
+\sum_{i=1}^nP(A_i)P(B|A_i)
+\label{eq:probabilidad-total}
+\end{equation}
+
+\paragraph{Bayes}\label{bayes}
+
+\begin{equation}
+P(A_k|B) = \frac{P(A_k)P(B|A_k)}{\sum_{i=1}^nP(A_i)P(B|A_i)}, k=1,...,n
+\label{eq:teorema-bayes}
+\end{equation}
+
+\subsection{Variable aleatoria}\label{variable-aleatoria}
+
+Es una función medible \(X\) que va de \(\Omega\) a \(\mathbb{R}\).
+\(X\) induce una partición en \(\Omega\) y queremos que \(X\) esté en
+\(\Im\); por otro lado \(X\) debe ser igual o más gruesa que \(\Im\),
+pero no menor, o de lo contrario no habrá una probabilidad \(P\), dado
+que \(P\) está definida sobre los eventos y al estar los eventos en
+\(\Im\), una partición menor implica que el evento no existe en \(\Im\).
+
+Una variable aleatoria es una función, pero no cualquier función es una
+variable aleatoria. En dicha función, lo que va cambiando es el
+recorrido, pero no el dominio (que es \(\Omega\)).
+
+Definida como: \(X(x): \Omega \rightarrow \mathbb{R} \\\)
+\(\Im \leftarrow X^{-1}(x)\)
+
+Y formalmente está definida en la ecuación \eqref{eq:variable-aleatoria} y
+también en la ecuación \eqref{eq:variable-aleatoria2}. Ambas son
+equivalentes.
+
+\begin{equation}
+\{\omega \in \Omega:X(\omega) \leq x\} \in \Im, \forall \text{ } x \in \mathbb{R}
+\label{eq:variable-aleatoria}
+\end{equation}
+
+\begin{equation}
+\{\omega \in \Omega:X(\omega) \in B\} \in \Im, \text{donde } B \text{ es cualquier conjunto Boreliano}
+\label{eq:variable-aleatoria2}
+\end{equation}
+
+Esto me permite calcular \(P\) para cualquier intervalo que se quiera.
+
+\subsubsection{Función de distribución de
+probabilidad}\label{funcion-de-distribucion-de-probabilidad}
+
+Dado un espacio de probabilidad \((\Omega, \Im, P)\), se considera una
+\textbf{función de distribución} de la variable aleatoria \(X\)
+(\(F_X(x)\)) para todos los valores \(x\) reales, mediante la ecuación
+\eqref{eq:funcion-distribucion}. En inglés, se denomina \textbf{Cumulative
+Distribution Function}, o CDF.
+
+\begin{equation}
+F_X(x) = P_X(X \leq x) \equiv P(\{\omega \in \Omega: X(\omega) \leq x \}) 
+\label{eq:funcion-distribucion}
+\end{equation}
+
+Por otro lado, si se considera para el mismo espacio de probabilidad
+\((\Omega, \Im, P)\) la variable aleatoria \(X = X(\omega) \in \Omega\),
+entonces esa variable aleatoria es \textbf{función de probabilidad} si
+cumple la ecuación \eqref{eq:funcion-probabilidad}, para todos los
+conjuntos Borelianos \(B\).
+
+\begin{equation}
+P_X(B) = P_X(X \in B) = P(\{\omega : X(\omega) \in B\})
+\label{eq:funcion-probabilidad}
+\end{equation}
+
+Finalmente, una \textbf{distribución de probabilidad} de una variable
+aleatoria \(X\) es la función de distribución \(F_X(x)\) (ecuación
+\eqref{eq:funcion-distribucion}) o la función de probabilidad \(P_X(B)\)
+(ecuación \eqref{eq:funcion-probabilidad}).
+
+Algunas propiedades importantes:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(\forall \in \mathbb{R} \Rightarrow 0 \leq F_X(x) \leq 1\)
+\item
+  \(a, b \in \mathbb{R} \Rightarrow P_X(a < X \leq b) = F_X(b) - F_X(a)\)
+\item
+  \(\forall \text{ } a, b \in \mathbb{R} \Rightarrow F_X(a) \leq F_X(b)\)
+  (no decreciente en la recta real)
+\item
+  \(\lim_{x \rightarrow + \infty} \Rightarrow F_X(x) = 1\) y
+  \(\lim_{x \rightarrow - \infty} \Rightarrow F_X(x) = 0\)
+\item
+  \(\forall \text{ } x_0, \lim_{x \rightarrow x_0^+} = F_X(x_0)\)
+  (continuidad por la derecha, es decir cuando va de \(+\infty\) a
+  \(-\infty\))
+\item
+  \(F_X(x)\) tiene una cantidad finita o numerable de puntos
+  discontinuos
+\end{enumerate}
+
+Una variable aleatoria es discreta, si \(F_X(x)\) es una función
+discreta de \(x\).
+
+Una variable aleatoria es continua, si \(F_X(x)\) es una función
+continua de \(x\).
+
+Las variables aleatorias \(X\) e \(Y\) son idénticamente distribuidas,
+si \(F_X(x) = F_Y(y), \text{ } \forall x\). Es importante tener claro
+que eso no quiere decir que \(X=Y\) o que \(X \neq Y\).
+
+La función que indica la probabilidad de ocurrencia de un
+\emph{``punto''} en particular, se denomina \textbf{Función de
+Probabilidad de Masa} (\textbf{Probability Mass Function}, PMF) y
+\textbf{Función de Densidad de Probabilidad} (\textbf{Probability
+Density Function}, PDF), para el caso discreto y continuo
+respectivamente. En el caso continuo, el punto tiene probabilidad 0, por
+lo que en realidad solo está estipulado para entenderlo de manera
+conceptual.
+
+La PMF se escribe como \(f_X(x)\), para diferenciarla de la PDF
+\(F_X(x)\). Ambas están definidas en la ecuación \eqref{eq:PMF-def} y
+\eqref{eq:PDF-def}.
+
+\begin{equation}
+PMF = f_X(x) = P(X=x), \text{} \forall x
+\label{eq:PMF-def}
+\end{equation}
+
+\begin{equation}
+PDF = F_X(x) = \int_{-\infty}^{x} f_X(t) dt, \text{} \forall x
+\label{eq:PDF-def}
+\end{equation}
+
+\subsubsection{Variable aleatoria
+discreta}\label{variable-aleatoria-discreta}
+
+Una variable aleatoria tiene distribución discreta si existe un conjunto
+\(B\) finito o numerable de la recta real, tal que \(P(X \in B) = 1\)
+
+Una \textbf{función de masa de probabilidad} está dada por \(P_X(X=x)\)
+para todo \(x\). La variable aleatoria tiene una distribución degenerada
+si existe un número \(c\) y \(P(X=c) = 1\).
+
+\subsubsection{Variable aleatoria
+continua}\label{variable-aleatoria-continua}
+
+Me niego
+
+
+\end{document}

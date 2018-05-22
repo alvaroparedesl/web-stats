@@ -192,7 +192,11 @@ P(A_k|B) = \frac{P(A_k)P(B|A_k)}{\sum_{i=1}^nP(A_i)P(B|A_i)}, k=1,...,n
 (\#eq:teorema-bayes)
 \end{equation}
 
-### Variable aleatoria
+
+
+
+
+## Variable aleatoria
 
 Es una función medible $X$ que va de $\Omega$ a $\mathbb{R}$. $X$ induce una partición en $\Omega$ y queremos que $X$ esté en $\Im$; por otro lado $X$ debe ser igual o más gruesa que $\Im$, pero no menor, o de lo contrario no habrá una probabilidad $P$, dado que $P$ está definida sobre los eventos y al estar los eventos en $\Im$, una partición menor implica que el evento no existe en $\Im$.
 
@@ -216,9 +220,9 @@ Y formalmente está definida en la ecuación \@ref(eq:variable-aleatoria) y tamb
 
 Esto me permite calcular $P$ para cualquier intervalo que se quiera.
 
-#### Función de distribución de probabilidad
+### Función de distribución de probabilidad
 
-Dado un espacio de probabilidad $(\Omega, \Im, P)$, se considera una **función de distribución** de la variable aleatoria $X$ ($F_X(x)$) para todos los valores $x$ reales, mediante la ecuación \@ref(eq:funcion-distribucion).
+Dado un espacio de probabilidad $(\Omega, \Im, P)$, se considera una **función de distribución** de la variable aleatoria $X$ ($F_X(x)$) para todos los valores $x$ reales, mediante la ecuación \@ref(eq:funcion-distribucion). En inglés, se denomina **Cumulative Distribution Function**, o CDF.
 
 \begin{equation}
 F_X(x) = P_X(X \leq x) \equiv P(\{\omega \in \Omega: X(\omega) \leq x \}) 
@@ -240,15 +244,41 @@ Algunas propiedades importantes:
 2. $a, b \in \mathbb{R} \Rightarrow P_X(a < X \leq b) = F_X(b) - F_X(a)$
 3. $\forall \text{ } a, b \in \mathbb{R} \Rightarrow F_X(a) \leq F_X(b)$ (no decreciente en la recta real)
 4. $\lim_{x \rightarrow + \infty} \Rightarrow F_X(x) = 1$ y $\lim_{x \rightarrow - \infty} \Rightarrow F_X(x) = 0$
-5. $\forall \text{ } x_0, \lim_{x \rightarrow x_0^+} = F_X(x_0)$ (continuidad por la ¿derecha?)
+5. $\forall \text{ } x_0, \lim_{x \rightarrow x_0^+} = F_X(x_0)$ (continuidad por la derecha, es decir cuando va de $+\infty$ a $-\infty$)
 6. $F_X(x)$ tiene una cantidad finita o numerable de puntos discontinuos
 
+Una variable aleatoria es discreta, si $F_X(x)$ es una función discreta de $x$.
 
-#### Variable aleatoria discreta
+Una variable aleatoria es continua, si $F_X(x)$ es una función continua de $x$.
+
+Las variables aleatorias $X$ e $Y$ son idénticamente distribuidas, si $F_X(x) = F_Y(y), \text{ } \forall x$. Es importante tener claro que eso no quiere decir que $X=Y$ o que $X \neq Y$.
+
+La función que indica la probabilidad de ocurrencia de un *"punto"* en particular, se denomina **Función de Probabilidad de Masa** (**Probability Mass Function**, PMF) y **Función de Densidad de Probabilidad** (**Probability Density Function**, PDF), para el caso discreto y continuo respectivamente. En el caso continuo, el punto tiene probabilidad 0, por lo que en realidad solo está estipulado para entenderlo de manera conceptual.
+
+La PMF se escribe como $f_X(x)$, para diferenciarla de la PDF $F_X(x)$. Ambas están definidas en la ecuación \@ref(eq:PMF-def) y \@ref(eq:PDF-def).
+
+\begin{equation}
+PMF = f_X(x) = P(X=x), \text{} \forall x
+(\#eq:PMF-def)
+\end{equation}
+
+\begin{equation}
+PDF = F_X(x) = \int_{-\infty}^{x} f_X(t) dt, \text{} \forall x
+(\#eq:PDF-def)
+\end{equation}
+
+
+
+### Variable aleatoria discreta
 
 Una variable aleatoria tiene distribución discreta si existe un conjunto $B$ finito o numerable de la recta real, tal que $P(X \in B) = 1$
 
 Una **función de masa de probabilidad** está dada por $P_X(X=x)$ para todo $x$. La variable aleatoria tiene una distribución degenerada si existe un número $c$ y $P(X=c) = 1$.
 
 
-#### Variable aleatoria continua
+### Variable aleatoria continua
+
+Me niego
+
+
+
