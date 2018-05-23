@@ -273,7 +273,7 @@ $f_X(x)$ es una PDF/PMF de una variable aleatoria $x$, $\Leftrightarrow$
 2. $\sum_{x} f_X(x) = 1$ o $\int_{-\infty}^{+\infty} f_X(x) dx = 1$
 
 
-### Distribución de una Función de Distribución
+### Distribución de una Función de Distribución de una Variable Aleatoria
 
 Para el caso discreto y continuo respectivamente, se tiene: 
 
@@ -287,10 +287,22 @@ PDF: F_Y(y) = P_Y(Y \leq y) = P_X(\{x \in X: g(x) \leq y\}) = P_X(X \in g^{-1}(A
 (\#eq:PDF-dist)
 \end{equation}
 
-Sea $X$ una variable aleatoria con CDF, función de distribución, $F_X(x)$, con $Y=g(X)$, $x_s = \{x \in X:f_X(x) > 0\}$ y $y_s = \{y \in y_s : y =g (x) \text{ para algún } x \in x_s\}$, entonces:
 
-1. Si $g$ es función creciente en $x_s$, $F_Y(y) = F_X(g^{-1}(y))$, para $y \in Y$
-2. Si $g$ es función decreciente en $x_s$, $F_Y(y) = F_X(g^{-1}(y))$
+Una propiedad, es que sea $X$ una variable aleatoria con CDF, función de distribución, $F_X(x)$, con $Y=g(X)$, $x_s = \{x \in X:f_X(x) > 0\}$ y $y_s = \{\text{y} \in y : \text{y}=g (x) \text{ para algún } x \in x_s\}$, entonces:
+
+1. Si $g$ es función creciente en $x_s$, $F_Y(\text{y}) = F_X(g^{-1}(\text{y}))$, para $\text{y} \in y$
+2. Si $g$ es función decreciente en $x_s$, $F_Y(\text{y}) = 1 - F_X(g^{-1}(\text{y}))$, siendo $X$ continua, para $\text{y} \in y$
+
+
+Otra propiedad, es que sea $X$ una variable aleatoria con PDF $f_X(x)$ y sea $Y=g(x)$, donde $g$ es una función monótona, suponga que $f_X(x)$ es continua en $X_c$ y que $g^{-1}(\text{y})$ tiene derivada continua en $y_c$, entonces la PDF de $Y$ está dada por la ecuación \@ref(eq:PDF-monotona)
+
+\begin{equation}
+f_Y(\text{y}) =\left\{\begin{matrix}
+f_X(g^{-1}(\text{y}))|\frac{d}{d_y}g^{-1}(\text{y})| &, \text{y} \in y_s\\ 
+0 & \text{e.o.c} 
+\end{matrix}\right.
+(\#eq:PDF-monotona)
+\end{equation}
 
 
 ### Variable aleatoria discreta
