@@ -267,6 +267,30 @@ PDF = F_X(x) = \int_{-\infty}^{x} f_X(t) dt, \text{} \forall x
 (\#eq:PDF-def)
 \end{equation}
 
+$f_X(x)$ es una PDF/PMF de una variable aleatoria $x$, $\Leftrightarrow$
+
+1. $f_X(x) \ge 0, \text{ } \forall x$
+2. $\sum_{x} f_X(x) = 1$ o $\int_{-\infty}^{+\infty} f_X(x) dx = 1$
+
+
+### Distribución de una Función de Distribución
+
+Para el caso discreto y continuo respectivamente, se tiene: 
+
+\begin{equation}
+CDF: P_Y(Y \in A) = P_Y(Y=y) = \sum_{x \in g^{-1}(y)}P_X(X=x) = \sum_{x \in g^{-1}(y)} f_X(x)
+(\#eq:CDF-dist)
+\end{equation}
+
+\begin{equation}
+PDF: F_Y(y) = P_Y(Y \leq y) = P_X(\{x \in X: g(x) \leq y\}) = P_X(X \in g^{-1}(A))= \int_{x \in X:g(x) \leq y} f_X(x)dx
+(\#eq:PDF-dist)
+\end{equation}
+
+Sea $X$ una variable aleatoria con CDF, función de distribución, $F_X(x)$, con $Y=g(X)$, $x_s = \{x \in X:f_X(x) > 0\}$ y $y_s = \{y \in y_s : y =g (x) \text{ para algún } x \in x_s\}$, entonces:
+
+1. Si $g$ es función creciente en $x_s$, $F_Y(y) = F_X(g^{-1}(y))$, para $y \in Y$
+2. Si $g$ es función decreciente en $x_s$, $F_Y(y) = F_X(g^{-1}(y))$
 
 
 ### Variable aleatoria discreta
